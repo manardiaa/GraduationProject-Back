@@ -12,16 +12,13 @@ namespace BL.Interfaces
         int Commit();
         #endregion
         CategoryRepository category { get; }
-<<<<<<< HEAD
         lessonContentRepository lessonContent { get; }
         lessonRepository lesson { get; }
         QuestionGroupRepository questionGroup { get; }
         QuestionOptionsRepository questionOptions { get; }
         QuestionRepository question { get; }
-
         StudentAnswerRepository studentAnswer { get; }
         TrueAndFalseRepository trueAndFalse { get; }
-=======
         CourseRepository course { get; }
         CourseVideosRepository courseVideos { get; }
         EnrollCourseRepository enrollcourse { get; }
@@ -30,7 +27,6 @@ namespace BL.Interfaces
 
 
 
->>>>>>> ebf14f31e3709e65ae3fde02d6d32fb3a0082a1f
 
     }
 }
