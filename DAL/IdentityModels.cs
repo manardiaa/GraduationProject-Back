@@ -9,13 +9,9 @@ namespace DAL
 {
     public class ApplicationStudentIdentity : IdentityUser
     {
-        // public int Id { get; set; }
-       // public string Name { get; set; }
-       // public string Phone { get; set; }
-        // public string Email { get; set; }
+        
         public string countery { get; set; }
         public string Image { get; set; }
-       // public string password { get; set; }
         public List<EnrollCourse> EnrollCourses { get; set; } = new List<EnrollCourse>();
     }
 
