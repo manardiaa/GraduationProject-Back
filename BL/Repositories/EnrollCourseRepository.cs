@@ -1,29 +1,52 @@
-﻿using System;
+﻿using BL.Bases;
+using DAL.Models;
+using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DAL.Models
+namespace BL.Repositories
 {
-    [Table("EnrollCourse")]
-    public class EnrollCourse
-    { 
-        public int Id { get; set; }
-        public string EnrollDate { get; set; }
-        public string EndEnrollDate { get; set; }
-       public string StudentId { get; set; }
-        public int CourseId { get; set; }
-         [ForeignKey("StudentId")] 
+    public class EnrollCourseRepository : BaseRepository<EnrollCourse>
+    {
 
-        public  ApplicationStudentIdentity ApplicationStudentIdentity { get; set; }
-        [ForeignKey("CourseId")]
-        public virtual Course Course { get; set; }
+        private DbContext U_DbContext;
 
+        public EnrollCourseRepository(DbContext U_DbContext) : base(U_DbContext)
+        {
+            this.U_DbContext = U_DbContext;
+        }
+        #region CRUB
 
+        public List<EnrollCourse> GetAllEnrollCourse()
+        {
+            return GetAll().ToList();
+        }
 
+        public bool InsertEnrollCourse(EnrollCourse enrollcourse)
+        {
+            return Insert(enrollcourse);
+        }
+        public void UpdateEnrollCourse(EnrollCourse enrollcourse)
+        {
+            Update(enrollcourse);
+        }
+        public void DeleteEnrollCourse(int id)
+        {
+            Delete(id);
+        }
 
+        public bool CheckEnrollCourseExists(EnrollCourse enrollcourse)
+        {
+            return GetAny(l => l.Id== enrollcourse.Id);
+        }
+        public EnrollCourse GetOEnrollCourseById(int id)
+        {
+            return GetFirstOrDefault(l => l.Id == id);
+        }
+        #endregion
     }
 }
+

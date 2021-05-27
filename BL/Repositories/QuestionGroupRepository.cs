@@ -1,28 +1,57 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
+using BL.Bases;
+using DAL.Models;
+using Microsoft.EntityFrameworkCore;
+using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DAL.Models
+namespace BL.Repositories
 {
-    public class QuestionGroup
-    {
-        public int Id { get; set; }
-        public int LectureId { get; set; }
-        public int CourseId { get; set; }
-        public int LessonId   { get; set; }
-        public int LessonContentId { get; set; }
-        [ForeignKey("LectureId")]
-        public virtual lecture Lecture { get; set; }
-        [ForeignKey("CourseId")]
-        public virtual Course Course { get; set; }
-        [ForeignKey("LessonId")]
-        public virtual lesson Lesson { get; set; }
-        [ForeignKey("LessonContentId")]
-        public virtual lessonContent LessonContent { get; set; }
-        public List<Question> Questiones { get; set; } = new List<Question>();
 
+
+    public class QuestionGroupRepository : BaseRepository<QuestionGroup>
+    {
+
+        private DbContext U_DbContext;
+
+        public QuestionGroupRepository(DbContext U_DbContext) : base(U_DbContext)
+        {
+            this.U_DbContext = U_DbContext;
+        }
+        #region CRUB
+
+        public List<QuestionGroup> GetAllQuestionGroup()
+        {
+            return GetAll().ToList();
+        }
+
+        public bool InsertQuestionGroup(QuestionGroup QuestionGroup)
+        {
+            return Insert(QuestionGroup);
+        }
+        public void UpdateQuestionGroup(QuestionGroup QuestionGroup)
+        {
+            Update(QuestionGroup);
+        }
+        public void DeleteQuestionGroup(int id)
+        {
+            Delete(id);
+        }
+
+        public bool CheckQuestionGroupExists(QuestionGroup QuestionGroup)
+        {
+            return GetAny(l => l.Id == QuestionGroup.Id);
+        }
+        public QuestionGroup GetQuestionGroupById(int id)
+        {
+            return GetFirstOrDefault(l => l.Id == id);
+        }
+        #endregion
     }
 }

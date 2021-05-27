@@ -1,30 +1,52 @@
-﻿using System;
+﻿using BL.Bases;
+using DAL.Models;
+using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DAL.Models
+namespace BL.Repositories
 {
-    [Table("Course")]
-    public class Course
+    public class CourseRepository : BaseRepository<Course>
     {
-        public int id { get; set; }
-        public string Name { get; set; }
-        public float Price { get; set; }
-        public float duration { get; set; }
-        public string type { get; set; }
-        public string description { get; set; }
-        public int LectureNumber { get; set; }
-        public int CategoryId { get; set; }
 
-        [ForeignKey("CategoryId")]
-        public virtual Category Category { get; set; }
-        public List<ApplicationStudentIdentity> Studentes { get; set; } = new List<ApplicationStudentIdentity>();
+        private DbContext U_DbContext;
 
+        public CourseRepository(DbContext U_DbContext) : base(U_DbContext)
+        {
+            this.U_DbContext = U_DbContext;
+        }
+        #region CRUB
 
+        public List<Course> GetAllCourse()
+        {
+            return GetAll().ToList();
+        }
 
+        public bool InsertCourse(Course course)
+        {
+            return Insert(course);
+        }
+        public void UpdateCourse(Course course)
+        {
+            Update(course);
+        }
+        public void DeleteCourse(int id)
+        {
+            Delete(id);
+        }
 
+        public bool CheckCourseExists(Course course)
+        {
+            return GetAny(l => l.id == course.id);
+        }
+        public Course GetOCourseById(int id)
+        {
+            return GetFirstOrDefault(l => l.id == id);
+        }
+        #endregion
     }
 }
+

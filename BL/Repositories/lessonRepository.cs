@@ -1,24 +1,57 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
+using BL.Bases;
+using DAL.Models;
+using Microsoft.EntityFrameworkCore;
+using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DAL.Models
+namespace BL.Repositories
 {
-    public class lesson
-    {
-        public int Id { get; set; }
-        public string Title { get; set; }
-        public string Details { get; set; }
-        public string Type { get; set; }
-        public int ContentNumber { get; set; }
-        public float Duration { get; set; }
-        public int LectureId { get; set; }
-        [ForeignKey("LectureId")]
-        public virtual lecture Lecture { get; set; }
-        public List<lessonContent> lessonesContent { get; set; } = new List<lessonContent>();
 
+
+    public class lessonRepository : BaseRepository<lesson>
+    {
+
+        private DbContext U_DbContext;
+
+        public lessonRepository(DbContext U_DbContext) : base(U_DbContext)
+        {
+            this.U_DbContext = U_DbContext;
+        }
+        #region CRUB
+
+        public List<lesson> GetAllLesson()
+        {
+            return GetAll().ToList();
+        }
+
+        public bool Insertlesson(lesson lesson)
+        {
+            return Insert(lesson);
+        }
+        public void Updatelesson(lesson lesson)
+        {
+            Update(lesson);
+        }
+        public void Deletelesson(int id)
+        {
+            Delete(id);
+        }
+
+        public bool ChecklessonExists(lesson lesson)
+        {
+            return GetAny(l => l.Id == lesson.Id);
+        }
+        public lesson GetlessonById(int id)
+        {
+            return GetFirstOrDefault(l => l.Id == id);
+        }
+        #endregion
     }
 }
