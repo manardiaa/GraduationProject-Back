@@ -24,7 +24,7 @@ namespace BL.Interfaces
         EnrollCourseRepository enrollcourse { get; }
         DragAndDropRepository dragAndDrop { get; }
         lectureRepository lecture { get; }
-
+        AccountRepository account { get; }
 
 
 
