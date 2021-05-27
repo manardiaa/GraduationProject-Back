@@ -1,0 +1,17 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="AppServices\" />
+    <Folder Include="Bases\" />
+    <Folder Include="Configurations\" />
+    <Folder Include="Dtos\" />
+    <Folder Include="Interfaces\" />
+    <Folder Include="StaticClasses\" />
+    <Folder Include="Repositories\" />
+  </ItemGroup>
+
+</Project>
