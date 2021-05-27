@@ -12,11 +12,11 @@ namespace BL.Repositories
     public class CategoryRepository : BaseRepository<Category>
     {
 
-        private DbContext EC_DbContext;
+        private DbContext U_DbContext;
 
-        public CategoryRepository(DbContext EC_DbContext) : base(EC_DbContext)
+        public CategoryRepository(DbContext U_DbContext) : base(U_DbContext)
         {
-            this.EC_DbContext = EC_DbContext;
+            this.U_DbContext = U_DbContext;
         }
         #region CRUB
 

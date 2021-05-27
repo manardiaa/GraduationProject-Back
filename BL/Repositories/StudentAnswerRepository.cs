@@ -1,24 +1,52 @@
-﻿using System;
+﻿using BL.Bases;
+using DAL.Models;
+using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DAL.Models
+namespace BL.Repositories
 {
-    public class StudentAnswer
+    public class StudentAnswerRepository : BaseRepository<StudentAnswer>
     {
-        public int id { get; set; }
-        public string Studentanswer { get; set; }
-        public int QuestionId { get; set; }     
-        public string StudentId { get; set; }
-        [ForeignKey("QuestionId")]
-        public virtual Question Question { get; set; }
-        [ForeignKey("StudentId")]
-        public virtual ApplicationStudentIdentity Student { get; set; }
 
+        private DbContext U_DbContext;
 
+        public StudentAnswerRepository(DbContext U_DbContext) : base(U_DbContext)
+        {
+            this.U_DbContext = U_DbContext;
+        }
+        #region CRUB
 
+        public List<StudentAnswer> GetAllStudentAnswer()
+        {
+            return GetAll().ToList();
+        }
+
+        public bool InsertStudentAnswer(StudentAnswer studentAnswer)
+        {
+            return Insert(studentAnswer);
+        }
+        public void UpdateStudentAnswer(StudentAnswer studentAnswer)
+        {
+            Update(studentAnswer);
+        }
+        public void DeleteStudentAnswer(int id)
+        {
+            Delete(id);
+        }
+
+        public bool CheckStudentAnswerExists(StudentAnswer studentAnswer)
+        {
+            return GetAny(l => l.id == studentAnswer.id);
+        }
+        public StudentAnswer GetOStudentAnswerById(int id)
+        {
+            return GetFirstOrDefault(l => l.id == id);
+        }
+        #endregion
     }
 }
