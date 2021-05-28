@@ -9,10 +9,12 @@ namespace DAL
 {
     public class ApplicationStudentIdentity : IdentityUser
     {
-        
+        public bool isDeleted;
+
         public string countery { get; set; }
         public string Image { get; set; }
         public List<EnrollCourse> EnrollCourses { get; set; } = new List<EnrollCourse>();
+        public bool isDelete { get; set; }
     }
 
     public class ApplicationUserStore : UserStore<ApplicationStudentIdentity>

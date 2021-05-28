@@ -15,7 +15,7 @@ namespace BL.AppServices
 {
     public class CategoryAppServices : AppServiceBase
     {
-        public CategoryAppServices(IUnitOfWork theUnitOfWork, IMapper mapper) : base(theUnitOfWork, mapper)
+        public CategoryAppServices(Interfaces.IUnitOfWork theUnitOfWork, IMapper mapper) : base(theUnitOfWork, mapper)
         {
 
         }
@@ -24,15 +24,12 @@ namespace BL.AppServices
         public List<CategoryViewModel> GetAllCateogries()
         {
 
-            return Mapper.Map<List<CategoryViewModel>>(TheUnitOfWork.Category.GetAllCategory());
+            return Mapper.Map<List<CategoryViewModel>>(TheUnitOfWork.category.GetAllCategory());
         }
         public CategoryViewModel GetCategory(int id)
         {
-            return Mapper.Map<CategoryViewModel>(TheUnitOfWork.Category.GetById(id));
+            return Mapper.Map<CategoryViewModel>(TheUnitOfWork.category.GetById(id));
         }
-
-
-
         public bool SaveNewCategory(CategoryViewModel categoryViewModel)
         {
             if (categoryViewModel == null)
@@ -41,7 +38,7 @@ namespace BL.AppServices
 
             bool result = false;
             var category = Mapper.Map<Category>(categoryViewModel);
-            if (TheUnitOfWork.Category.Insert(category))
+            if (TheUnitOfWork.category.Insert(category))
             {
                 result = TheUnitOfWork.Commit() > new int();
             }
@@ -52,7 +49,7 @@ namespace BL.AppServices
         public bool UpdateCategory(CategoryViewModel categoryViewModel)
         {
             var category = Mapper.Map<Category>(categoryViewModel);
-            TheUnitOfWork.Category.Update(category);
+            TheUnitOfWork.category.Update(category);
             TheUnitOfWork.Commit();
 
             return true;
@@ -63,7 +60,7 @@ namespace BL.AppServices
         {
             bool result = false;
 
-            TheUnitOfWork.Category.Delete(id);
+            TheUnitOfWork.category.Delete(id);
             result = TheUnitOfWork.Commit() > new int();
 
             return result;
@@ -72,19 +69,11 @@ namespace BL.AppServices
         public bool CheckCategoryExists(CategoryViewModel categoryViewModel)
         {
             Category category = Mapper.Map<Category>(categoryViewModel);
-            return TheUnitOfWork.Category.CheckCategoryExists(category);
+            return TheUnitOfWork.category.CheckCategoryExists(category);
         }
         #endregion
 
-        #region pagination
-        public int CountEntity()
-        {
-            return TheUnitOfWork.Category.CountEntity();
-        }
-        public IEnumerable<CategoryViewModel> GetPageRecords(int pageSize, int pageNumber)
-        {
-            return Mapper.Map<List<CategoryViewModel>>(TheUnitOfWork.Category.GetPageRecords(pageSize, pageNumber));
-        }
-        #endregion
+      
+   
     }
 }
