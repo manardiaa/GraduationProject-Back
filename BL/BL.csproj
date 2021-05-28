@@ -5,6 +5,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="AppServices\StudentAnswerAppServices.cs~RF32023f6d.TMP" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.1" />
     <PackageReference Include="Marten" Version="3.13.4" />
     <PackageReference Include="Microsoft.AspNetCore.Identity" Version="2.2.0" />
