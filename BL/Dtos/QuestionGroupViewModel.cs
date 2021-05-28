@@ -9,8 +9,11 @@ namespace BL.Dtos
 
 {
     public class QuestionGroupViewModel
-    {
+    { 
+        
         public int Id { get; set; }
+        public string title { get; set; }
+        public int QGroupID { get; set; }
         public int LectureId { get; set; }
         public int CourseId { get; set; }
         public int LessonId   { get; set; }

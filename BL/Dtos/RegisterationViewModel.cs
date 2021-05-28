@@ -22,9 +22,9 @@ namespace BL.Dtos
         [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
         [Display(Name = "Phone Number")]
-        public string PhoneNumber { get; set; }
+        public string ? PhoneNumber { get; set; }
         [MinLength(3)]
-        public string  Country { get; set; }
-        public string RoleName { get; set; }
+        public string ? Country { get; set; }
+        public string ? RoleName { get; set; }
     }
 }

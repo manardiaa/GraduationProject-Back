@@ -12,6 +12,7 @@ namespace BL.Dtos
         public int id { get; set; }
         public string RightAnswer { get; set; }
         public int QustionId { get; set; }
-       
+
+
     }
 }

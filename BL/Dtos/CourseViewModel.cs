@@ -19,8 +19,6 @@ namespace BL.Dtos
         public string description { get; set; }
         public int LectureNumber { get; set; }
         public int CategoryId { get; set; }
-        public List<ApplicationStudentIdentity> Studentes { get; set; } = new List<ApplicationStudentIdentity>();
-
 
 
 

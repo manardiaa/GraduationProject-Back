@@ -17,7 +17,6 @@ namespace BL.Dtos
         public string EndEnrollDate { get; set; }
        public string StudentId { get; set; }
         public int CourseId { get; set; }
-        public virtual ApplicationStudentIdentity ApplicationStudentIdentity { get; set; }
      
 
 
