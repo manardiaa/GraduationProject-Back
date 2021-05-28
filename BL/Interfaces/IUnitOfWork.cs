@@ -21,12 +21,11 @@ namespace BL.Interfaces
         TrueAndFalseRepository trueAndFalse { get; }
         CourseRepository course { get; }
         CourseVideosRepository courseVideos { get; }
-        EnrollCourseRepository enrollcourse { get; }
+        EnrollCourseRepository enrollCourse { get; }
         DragAndDropRepository dragAndDrop { get; }
         lectureRepository lecture { get; }
 
-       // AccountRepository Account { get; }
-        RoleRepository Role { get; }
+        RoleRepository role { get; }
 
 
         AccountRepository account { get; }

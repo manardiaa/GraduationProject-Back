@@ -32,8 +32,8 @@ namespace BL.Repositories
         public async Task CreateRoles()
         {
             
-            if (!await manager.RoleExistsAsync(UserRoles.Admin))
-                await manager.CreateAsync(new IdentityRole(UserRoles.Admin));
+            //if (!await manager.RoleExistsAsync(UserRoles.Admin))
+            //    await manager.CreateAsync(new IdentityRole(UserRoles.Admin));
             if (!await manager.RoleExistsAsync(UserRoles.User))
                 await manager.CreateAsync(new IdentityRole(UserRoles.User));
 
