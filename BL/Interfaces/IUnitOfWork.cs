@@ -12,5 +12,14 @@ namespace BL.Interfaces
         int Commit();
         #endregion
         CategoryRepository category { get; }
+        CourseRepository course { get; }
+        CourseVideosRepository courseVideos { get; }
+        EnrollCourseRepository enrollcourse { get; }
+        DragAndDropRepository dragAndDrop { get; }
+        lectureRepository lecture { get; }
+
+
+
+
     }
 }
