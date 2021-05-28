@@ -20,7 +20,7 @@ namespace BL.AppServices
 
         #region CURD
 
-        public List<QuestionGroupViewModel> AllQuestions()
+        public List<QuestionGroupViewModel> AllQuestionsGroup()
         {
 
             return Mapper.Map<List<QuestionGroupViewModel>>(TheUnitOfWork.questionGroup.GetAllQuestionGroup());
