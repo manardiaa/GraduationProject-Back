@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace Api.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/Category")]
     [ApiController]
     //[Authorize]
     public class CategoryController : ControllerBase
