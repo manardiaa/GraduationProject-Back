@@ -1,8 +1,5 @@
 ﻿using BL.AppServices;
-using BL.StaticClasses;
 using BL.Dtos;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -10,33 +7,32 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Api.Controllers
+namespace WebApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    //[Authorize]
-    public class CategoryController : ControllerBase
+    public class lessonContentController : ControllerBase
     {
-        CategoryAppService _categoryAppService;
+        LessonContentAppService _lessonContentAppService;
 
-        public CategoryController(CategoryAppService categoryAppService)
+        public lessonContentController(LessonContentAppService lessonContentAppService)
         {
-            this._categoryAppService = categoryAppService;
+            this._lessonContentAppService = lessonContentAppService;
         }
 
         [HttpGet]
-        public IActionResult GetAllCategories()
+        public IActionResult GetAllLessonContent()
         {
-            return Ok(_categoryAppService.GetAllCateogries());
+            return Ok(_lessonContentAppService.AllLessonContent());
         }
         [HttpGet("{id}")]
-        public IActionResult GetCategoryById(int id)
+        public IActionResult GetLessonContentById(int id)
         {
-            return Ok(_categoryAppService.GetCategory(id));
+            return Ok(_lessonContentAppService.GetlessonContent(id));
         }
 
         [HttpPost]
-        public IActionResult Create(CategoryViewModel categoryViewModel)
+        public IActionResult Create(lessonContentViewModel LessonContentViewModel)
         {
 
             if (ModelState.IsValid == false)
@@ -45,11 +41,8 @@ namespace Api.Controllers
             }
             try
             {
-                _categoryAppService.SaveNewCategory(categoryViewModel);
-                
-                //string urlDetails = Url.Link("DefaultApi", new { id = categoryViewModel.ID });
-                //return Created(urlDetails, "Added Sucess");
-                return Created("CreateCategory" , categoryViewModel);
+                _lessonContentAppService.SaveNewlessonContent(LessonContentViewModel);
+                return Created("CreateLessonContent", LessonContentViewModel);
             }
             catch (Exception ex)
             {
@@ -59,7 +52,7 @@ namespace Api.Controllers
         }
 
         [HttpPut("{id}")]
-        public IActionResult Edit(int id, CategoryViewModel categoryViewModel)
+        public IActionResult Edit(int id, lessonContentViewModel LessonContentViewModel)
         {
 
             if (ModelState.IsValid == false)
@@ -68,8 +61,8 @@ namespace Api.Controllers
             }
             try
             {
-                _categoryAppService.UpdateCategory(categoryViewModel);
-                return Ok(categoryViewModel);
+                _lessonContentAppService.UpdatelessonContent(LessonContentViewModel);
+                return Ok(LessonContentViewModel);
             }
             catch (Exception ex)
             {
@@ -82,15 +75,14 @@ namespace Api.Controllers
         {
             try
             {
-                _categoryAppService.DeleteCategory(id);
+                _lessonContentAppService.DeletelessonContent(id);
                 return NoContent();
             }
             catch (Exception ex)
             {
                 return BadRequest(ex.Message);
             }
+
         }
-    
-  
     }
 }

@@ -1,8 +1,5 @@
 ﻿using BL.AppServices;
-using BL.StaticClasses;
 using BL.Dtos;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -10,33 +7,32 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Api.Controllers
+namespace WebApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    //[Authorize]
-    public class CategoryController : ControllerBase
+    public class EnrollCourseController : ControllerBase
     {
-        CategoryAppService _categoryAppService;
+        EnrollCourseAppService _enrollcourseAppService;
 
-        public CategoryController(CategoryAppService categoryAppService)
+        public EnrollCourseController(EnrollCourseAppService enrollcourseAppService)
         {
-            this._categoryAppService = categoryAppService;
+            this._enrollcourseAppService = enrollcourseAppService;
         }
 
         [HttpGet]
-        public IActionResult GetAllCategories()
+        public IActionResult GetAllEnrollCourses()
         {
-            return Ok(_categoryAppService.GetAllCateogries());
+            return Ok(_enrollcourseAppService.GetAllEnrollCourses());
         }
         [HttpGet("{id}")]
-        public IActionResult GetCategoryById(int id)
+        public IActionResult GetEnrollCourseById(int id)
         {
-            return Ok(_categoryAppService.GetCategory(id));
+            return Ok(_enrollcourseAppService.GetEnrollCourse(id));
         }
 
         [HttpPost]
-        public IActionResult Create(CategoryViewModel categoryViewModel)
+        public IActionResult Create(EnrollCourseViewModel enrollcourseViewModel)
         {
 
             if (ModelState.IsValid == false)
@@ -45,11 +41,8 @@ namespace Api.Controllers
             }
             try
             {
-                _categoryAppService.SaveNewCategory(categoryViewModel);
-                
-                //string urlDetails = Url.Link("DefaultApi", new { id = categoryViewModel.ID });
-                //return Created(urlDetails, "Added Sucess");
-                return Created("CreateCategory" , categoryViewModel);
+                _enrollcourseAppService.SaveNewEnrollCourse(enrollcourseViewModel);
+                return Created("CreateEnrollCourse", enrollcourseViewModel);
             }
             catch (Exception ex)
             {
@@ -59,7 +52,7 @@ namespace Api.Controllers
         }
 
         [HttpPut("{id}")]
-        public IActionResult Edit(int id, CategoryViewModel categoryViewModel)
+        public IActionResult Edit(int id, EnrollCourseViewModel enrollcourseViewModel)
         {
 
             if (ModelState.IsValid == false)
@@ -68,8 +61,8 @@ namespace Api.Controllers
             }
             try
             {
-                _categoryAppService.UpdateCategory(categoryViewModel);
-                return Ok(categoryViewModel);
+                _enrollcourseAppService.UpdateEnrollCourse(enrollcourseViewModel);
+                return Ok(enrollcourseViewModel);
             }
             catch (Exception ex)
             {
@@ -82,7 +75,7 @@ namespace Api.Controllers
         {
             try
             {
-                _categoryAppService.DeleteCategory(id);
+                _enrollcourseAppService.DeleteEnrollCourse(id);
                 return NoContent();
             }
             catch (Exception ex)
@@ -90,7 +83,5 @@ namespace Api.Controllers
                 return BadRequest(ex.Message);
             }
         }
-    
-  
     }
 }

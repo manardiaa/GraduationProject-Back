@@ -1,8 +1,5 @@
 ﻿using BL.AppServices;
-using BL.StaticClasses;
 using BL.Dtos;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -10,33 +7,32 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Api.Controllers
+namespace WebApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    //[Authorize]
-    public class CategoryController : ControllerBase
+    public class DragAndDropController : ControllerBase
     {
-        CategoryAppService _categoryAppService;
+        DragAndDropAppService _dragAndDropAppService;
 
-        public CategoryController(CategoryAppService categoryAppService)
+        public DragAndDropController(DragAndDropAppService dragAndDropAppService)
         {
-            this._categoryAppService = categoryAppService;
+            this._dragAndDropAppService = dragAndDropAppService;
         }
 
         [HttpGet]
-        public IActionResult GetAllCategories()
+        public IActionResult GetAllDragAndDrop()
         {
-            return Ok(_categoryAppService.GetAllCateogries());
+            return Ok(_dragAndDropAppService.GetAllDragAndDrop());
         }
         [HttpGet("{id}")]
-        public IActionResult GetCategoryById(int id)
+        public IActionResult GetDragAndDropById(int id)
         {
-            return Ok(_categoryAppService.GetCategory(id));
+            return Ok(_dragAndDropAppService.GetDragAndDrop(id));
         }
 
         [HttpPost]
-        public IActionResult Create(CategoryViewModel categoryViewModel)
+        public IActionResult Create(DragAndDropViewModel dragAndDropViewModel)
         {
 
             if (ModelState.IsValid == false)
@@ -45,11 +41,8 @@ namespace Api.Controllers
             }
             try
             {
-                _categoryAppService.SaveNewCategory(categoryViewModel);
-                
-                //string urlDetails = Url.Link("DefaultApi", new { id = categoryViewModel.ID });
-                //return Created(urlDetails, "Added Sucess");
-                return Created("CreateCategory" , categoryViewModel);
+                _dragAndDropAppService.SaveNewDragAndDrop(dragAndDropViewModel);
+                return Created("CreateDragAndDrop", dragAndDropViewModel);
             }
             catch (Exception ex)
             {
@@ -59,7 +52,7 @@ namespace Api.Controllers
         }
 
         [HttpPut("{id}")]
-        public IActionResult Edit(int id, CategoryViewModel categoryViewModel)
+        public IActionResult Edit(int id, DragAndDropViewModel dragAndDropViewModel)
         {
 
             if (ModelState.IsValid == false)
@@ -68,8 +61,8 @@ namespace Api.Controllers
             }
             try
             {
-                _categoryAppService.UpdateCategory(categoryViewModel);
-                return Ok(categoryViewModel);
+                _dragAndDropAppService.UpdateDragAndDrop(dragAndDropViewModel);
+                return Ok(dragAndDropViewModel);
             }
             catch (Exception ex)
             {
@@ -82,7 +75,7 @@ namespace Api.Controllers
         {
             try
             {
-                _categoryAppService.DeleteCategory(id);
+                _dragAndDropAppService.DeleteDragAndDrop(id);
                 return NoContent();
             }
             catch (Exception ex)
@@ -90,7 +83,5 @@ namespace Api.Controllers
                 return BadRequest(ex.Message);
             }
         }
-    
-  
     }
 }
