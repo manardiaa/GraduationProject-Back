@@ -167,25 +167,22 @@ namespace BL.AppServices
            
         }
 
-        //public async Task CreateFirstAdmin()
-        //{
-        //    var firstAdmin = new RegisterViewodel()
-        //    {
-        //        Id = null,
-        //        Email = "test@gmail.com",
-        //        FirstName = "first",
-        //        LastName = "user",
-        //        UserName = "admin",
-        //        PasswordHash = "@Admin12345",
-        //        BirthDate = DateTime.Now,
-               
-        //    };
-        //    Register(firstAdmin).Wait();
-        //    //ApplicationStudentIdentity foundedAdmin = await FindByName(firstAdmin.UserName);
-        //    //if(foundedAdmin != null)
-        //    //    AssignToRole(foundedAdmin.Id, UserRoles.Admin).Wait();
-        //}
-       
+        public async Task CreateFirstAdmin()
+        {
+            var firstAdmin = new RegisterViewodel()
+            {
+                Id = null,
+                Email = "test@gmail.com",
+                UserName = "admin",
+                PasswordHash = "@Admin12345",
+
+            };
+            Register(firstAdmin).Wait();
+            //ApplicationStudentIdentity foundedAdmin = await FindByName(firstAdmin.UserName);
+            //if(foundedAdmin != null)
+            //    AssignToRole(foundedAdmin.Id, UserRoles.Admin).Wait();
+        }
+
 
     }
 }

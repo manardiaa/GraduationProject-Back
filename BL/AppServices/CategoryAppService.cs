@@ -13,9 +13,9 @@ using Marten.Services;
 
 namespace BL.AppServices
 {
-    public class CategoryAppServices : AppServiceBase
+    public class CategoryAppService : AppServiceBase
     {
-        public CategoryAppServices(Interfaces.IUnitOfWork theUnitOfWork, IMapper mapper) : base(theUnitOfWork, mapper)
+        public CategoryAppService(Interfaces.IUnitOfWork theUnitOfWork, IMapper mapper) : base(theUnitOfWork, mapper)
         {
 
         }

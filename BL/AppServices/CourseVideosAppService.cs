@@ -13,9 +13,9 @@ using Marten.Services;
 
 namespace BL.AppServices
 {
-    public class CourseVideosAppServices : AppServiceBase
+    public class CourseVideosAppService : AppServiceBase
     {
-        public CourseVideosAppServices(Interfaces.IUnitOfWork theUnitOfWork, IMapper mapper) : base(theUnitOfWork, mapper)
+        public CourseVideosAppService(Interfaces.IUnitOfWork theUnitOfWork, IMapper mapper) : base(theUnitOfWork, mapper)
         {
 
         }

@@ -12,8 +12,10 @@ namespace BL.Dtos
             public int ID { get; set; }
             [Required]
             public string CatName { get; set; }
-        }
+        public List<CourseViewModel> courseViewModels { get; set; }
+
     }
+}
 
 
 

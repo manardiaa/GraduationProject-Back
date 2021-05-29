@@ -13,7 +13,7 @@ using AutoMapper;
 
 namespace BL.AppServices
 {
-    public class RoleAppService : AppServiceBase
+    public  class RoleAppService : AppServiceBase
     {
         public RoleAppService(IUnitOfWork theUnitOfWork, IMapper mapper) : base(theUnitOfWork, mapper)
         {

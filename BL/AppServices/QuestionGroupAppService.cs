@@ -13,9 +13,9 @@ using Marten.Services;
 
 namespace BL.AppServices
 {
-   public class QuestionGroupAppServices : AppServiceBase
+   public class QuestionGroupAppService : AppServiceBase
     {
-        public QuestionGroupAppServices(Interfaces.IUnitOfWork theUnitOfWork, IMapper mapper) : base(theUnitOfWork, mapper)
+        public QuestionGroupAppService(Interfaces.IUnitOfWork theUnitOfWork, IMapper mapper) : base(theUnitOfWork, mapper)
         { }
 
         #region CURD

@@ -13,9 +13,9 @@ using Marten.Services;
 
 namespace BL.AppServices
 {
-   public class LessonAppServices : AppServiceBase
+   public class LessonAppService : AppServiceBase
     {
-        public LessonAppServices(Interfaces.IUnitOfWork theUnitOfWork, IMapper mapper) : base(theUnitOfWork, mapper)
+        public LessonAppService(Interfaces.IUnitOfWork theUnitOfWork, IMapper mapper) : base(theUnitOfWork, mapper)
         { }
 
         #region CURD
