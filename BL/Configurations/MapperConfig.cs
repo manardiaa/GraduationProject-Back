@@ -32,6 +32,13 @@ namespace BL.Configurations
             CreateMap<ApplicationStudentIdentity, RegisterViewodel>().ReverseMap();
             CreateMap<IdentityRole, RoleViewModel>().ReverseMap();
             CreateMap<IdentityRole, UserRolesViewModel>().ReverseMap();
+            CreateMap<Country, CountryViewModel>().ReverseMap();
+            CreateMap<Consultation, ConsultationViewModel>().ReverseMap();
+            CreateMap<MentorOrInstractorStories, MentorOrInstractorStoriesViewModel>().ReverseMap();
+            CreateMap<StudentReviews, StudentReviewsViewModel>().ReverseMap();
+            CreateMap<StudentStories, StudentStoriesViewModel>().ReverseMap();
+
+
         }
 
     }

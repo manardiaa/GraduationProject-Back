@@ -62,5 +62,13 @@ namespace DAL
         public DbSet<EnrollCourse> EnrollCourses { get; set; }
         public DbSet<CourseVideos> CourseVideos { get; set; }
         public DbSet<DragAndDrop> DragAndDrop { get; set; }
+        public DbSet<Country> Countries { get; set; }
+        public DbSet<Consultation> Consultations { get; set; }
+        public DbSet<StudentStories> studentStories { get; set; }
+        public DbSet<StudentReviews> StudentReview { get; set; }
+        public DbSet<MentorOrInstractorStories> MentorOrInstractorStory { get; set; }
+        
+
+
     }
 }

@@ -174,7 +174,7 @@ namespace BL.AppServices
                 Id = null,
                 Email = "test@gmail.com",
                 UserName = "admin",
-                PasswordHash = "@Admin12345",
+                PasswordHash= "@Admin12345",
 
             };
             Register(firstAdmin).Wait();

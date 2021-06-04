@@ -4,14 +4,16 @@ using DAL;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace DAL.Migrations
 {
     [DbContext(typeof(ApplicationDBContext))]
-    partial class ApplicationDBContextModelSnapshot : ModelSnapshot
+    [Migration("20210603173223_init4")]
+    partial class init4
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -150,8 +152,8 @@ namespace DAL.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Country_Name")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("Country_Name")
+                        .HasColumnType("int");
 
                     b.HasKey("id");
 
@@ -278,9 +280,6 @@ namespace DAL.Migrations
 
                     b.Property<string>("MemberType")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("ShowOrNot")
-                        .HasColumnType("int");
 
                     b.Property<string>("Specialzation")
                         .HasColumnType("nvarchar(max)");
@@ -414,9 +413,6 @@ namespace DAL.Migrations
                     b.Property<int>("Rate")
                         .HasColumnType("int");
 
-                    b.Property<int>("ShowOrNot")
-                        .HasColumnType("int");
-
                     b.Property<string>("StdReviews")
                         .HasColumnType("nvarchar(max)");
 
@@ -436,9 +432,6 @@ namespace DAL.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("ShowOrNot")
-                        .HasColumnType("int");
 
                     b.Property<string>("Specialzation")
                         .HasColumnType("nvarchar(max)");
