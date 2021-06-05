@@ -13,8 +13,7 @@ namespace DAL.Models
         public int Id { get; set; }
         public string CatName { get; set; }
         public string CatImage { get; set; }
-        public string CatDescription{ get; set; }
-
+        public string CatDescription{ get; set; }        
         public List<Course> Courses { get; set; } = new List<Course>();
 
     }

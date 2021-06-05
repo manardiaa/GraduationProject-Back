@@ -276,5 +276,17 @@ namespace BL.Bases
                 return StudentStories;
             }
         }
+
+
+        public SubCategoryRepository SubCategory;
+        public SubCategoryRepository subCategory
+        {
+            get
+            {
+                if (SubCategory == null)
+                    SubCategory = new SubCategoryRepository(U_DbContext);
+                return SubCategory;
+            }
+        }
     }
 }

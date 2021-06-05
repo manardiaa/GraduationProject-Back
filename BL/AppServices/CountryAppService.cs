@@ -21,16 +21,16 @@ namespace BL.AppServices
         }
         #region CURD
 
-        public List<CountryViewModel> GetAllCateogries()
+        public List<CountryViewModel> GetAllCountries()
         {
 
             return Mapper.Map<List<CountryViewModel>>(TheUnitOfWork.country.GetAllCountries());
         }
-        public CountryViewModel GetCategory(int id)
+        public CountryViewModel GetCountry(int id)
         {
             return Mapper.Map<CountryViewModel>(TheUnitOfWork.country.GetById(id));
         }
-        public bool SaveNewCategory(CountryViewModel countryViewModel)
+        public bool SaveNewCountry(CountryViewModel countryViewModel)
         {
             if (countryViewModel == null)
 
@@ -46,7 +46,7 @@ namespace BL.AppServices
         }
 
 
-        public bool UpdateCategory(CountryViewModel countryViewModel)
+        public bool UpdateCountry(CountryViewModel countryViewModel)
         {
             var country = Mapper.Map<Country>(countryViewModel);
             TheUnitOfWork.country.Update(country);
@@ -56,7 +56,7 @@ namespace BL.AppServices
         }
 
 
-        public bool DeleteCategory(int id)
+        public bool DeleteCountry(int id)
         {
             bool result = false;
 
@@ -66,7 +66,7 @@ namespace BL.AppServices
             return result;
         }
 
-        public bool CheckCategoryExists(CountryViewModel countryViewModel)
+        public bool CheckCountryExists(CountryViewModel countryViewModel)
         {
             var country = Mapper.Map<Country>(countryViewModel);
             return TheUnitOfWork.country.CheckCountryExists(country);

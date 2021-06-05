@@ -31,6 +31,19 @@ namespace WebApi.Controllers
             return Ok(_courseAppService.GetCourse(id));
         }
 
+        [HttpGet("/CourseByCategory/{Catid}")]
+
+        public IActionResult GetCrsListByCatid(int Catid)
+        {
+            return Ok(_courseAppService.GetAllCrsByCatID(Catid));
+        }
+        
+        [HttpGet("/GetTopTwoCrs/{Catid}")]
+        public IActionResult GetListOfTwoCrs(int Catid)
+        {
+            return Ok(_courseAppService.GetListOfTwoCrsByCatID(Catid));
+        }
+
         [HttpPost]
         public IActionResult Create(CourseViewModel courseViewModel)
         {

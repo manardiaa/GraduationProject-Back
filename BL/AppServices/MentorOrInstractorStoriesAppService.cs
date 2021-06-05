@@ -71,6 +71,17 @@ namespace BL.AppServices
             var mentorOrInstractor = Mapper.Map<MentorOrInstractorStories>(mentorOrInstractorViewModel);
             return TheUnitOfWork.mentorOrInstractor.CheckMentorOrInstractorStoriesExists(mentorOrInstractor);
         }
+
+        public List<MentorOrInstractorStoriesViewModel> GetFourInstractors()
+        {
+            return Mapper.Map<List<MentorOrInstractorStoriesViewModel>>(TheUnitOfWork.mentorOrInstractor.GetTopFourInstractorStories());
+        }
+
+
+        public List<MentorOrInstractorStoriesViewModel> GetFourMentors()
+        {
+            return Mapper.Map<List<MentorOrInstractorStoriesViewModel>>(TheUnitOfWork.mentorOrInstractor.GetTopFourMentorStories());
+        }
         #endregion
 
 

@@ -74,6 +74,16 @@ namespace BL.AppServices
             Course course = Mapper.Map<Course>(courseViewModel);
             return TheUnitOfWork.course.CheckCourseExists(course);
         }
+
+        public List<CourseViewModel> GetAllCrsByCatID(int CatID)
+        {
+            return Mapper.Map<List<CourseViewModel>>(TheUnitOfWork.course.GetAllCourseByCatID(CatID));            
+        }
+
+        public List<CourseViewModel> GetListOfTwoCrsByCatID(int CatID)
+        {
+            return Mapper.Map<List<CourseViewModel>>(TheUnitOfWork.course.GetTopTwoCrs(CatID));
+        }
         #endregion
 
 

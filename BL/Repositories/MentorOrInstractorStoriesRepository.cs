@@ -47,6 +47,16 @@ namespace BL.Repositories
         {
             return GetFirstOrDefault(l => l.id == id);
         }
+
+        public List<MentorOrInstractorStories> GetTopFourInstractorStories()
+        {
+            return GetWhere(Inst => Inst.MemberType == "Instractor" && Inst.ShowOrNot==1).Take(4).ToList();
+        }
+
+        public List<MentorOrInstractorStories> GetTopFourMentorStories()
+        {
+            return GetWhere(Inst => Inst.MemberType == "Mentor" && Inst.ShowOrNot == 1).Take(4).ToList();
+        }
         #endregion
     }
 }

@@ -37,6 +37,7 @@ namespace BL.Configurations
             CreateMap<MentorOrInstractorStories, MentorOrInstractorStoriesViewModel>().ReverseMap();
             CreateMap<StudentReviews, StudentReviewsViewModel>().ReverseMap();
             CreateMap<StudentStories, StudentStoriesViewModel>().ReverseMap();
+            CreateMap<SubCategory, SubCategoryViewModel>().ReverseMap();
 
 
         }

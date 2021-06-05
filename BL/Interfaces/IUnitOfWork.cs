@@ -31,5 +31,6 @@ namespace BL.Interfaces
         MentorOrInstractorStoriesRepository mentorOrInstractor { get; }
         StudentReviewsRepository studentReviews { get; }
         StudentStoriesRepository studentStories { get; }
+        SubCategoryRepository subCategory { get; }
     }
 }
