@@ -174,13 +174,13 @@ namespace BL.AppServices
                 Id = null,
                 Email = "test@gmail.com",
                 UserName = "admin",
-                PasswordHash= "@Admin12345",
+                PasswordHash = "@Admin12345",
 
             };
             Register(firstAdmin).Wait();
-            //ApplicationStudentIdentity foundedAdmin = await FindByName(firstAdmin.UserName);
-            //if(foundedAdmin != null)
-            //    AssignToRole(foundedAdmin.Id, UserRoles.Admin).Wait();
+            ApplicationStudentIdentity foundedAdmin = await FindByName(firstAdmin.UserName);
+            if (foundedAdmin != null)
+                AssignToRole(foundedAdmin.Id, UserRoles.Admin).Wait();
         }
 
 
