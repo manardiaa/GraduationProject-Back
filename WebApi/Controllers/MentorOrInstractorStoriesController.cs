@@ -33,6 +33,17 @@ namespace WebApi.Controllers
             return Ok(mentorOrInstractorStoriesApp.GetFourInstractors());
         }
 
+        [HttpGet("InstractorsStories")]
+        public IActionResult AllInstractors()
+        {
+            return Ok(mentorOrInstractorStoriesApp.GetAllInstractor());
+        }
+        [HttpGet("MentorStories")]
+        public IActionResult AllMentor()
+        {
+            return Ok(mentorOrInstractorStoriesApp.GetAllMentors());
+        }
+
         [HttpGet("TopFourMentors")]
         public IActionResult TopFourMentorStories()
         {

@@ -13,6 +13,7 @@ namespace DAL.Models
         [Key]
         public int ID { get; set; }
         public string SubCategoryTitle { get; set; } = "Test";
+        public string SubCategoryDescribtion { get; set; }
         public int CategoryID { get; set; } = 1;
 
         [ForeignKey("CategoryID")]
