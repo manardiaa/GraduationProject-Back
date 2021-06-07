@@ -7,11 +7,13 @@ using System.Threading.Tasks;
 
 namespace BL.Dtos
     {
-        public class CategoryViewModel
-        {
-            public int ID { get; set; }
-            [Required]
-            public string CatName { get; set; }        
+    public class CategoryViewModel
+    {
+        public int ID { get; set; }
+        [Required]
+        public string CatName { get; set; }
+        public string CatImage { get; set; }
+        public string CatDescription { get; set; }
 
     }
 }

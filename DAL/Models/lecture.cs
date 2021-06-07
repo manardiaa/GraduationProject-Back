@@ -14,6 +14,7 @@ namespace DAL.Models
         public string Tilte { get; set; }
         public int CourseId { get; set;}
         public int lessoneNumber { get; set; }
+        public string LectureDescription { get; set; }
         [ForeignKey("CourseId")]
         public virtual Course Course { get; set; }
         public List<lesson> lessones { get; set; } = new List<lesson>();

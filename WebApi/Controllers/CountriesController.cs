@@ -1,5 +1,8 @@
 ﻿using BL.AppServices;
+using BL.StaticClasses;
 using BL.Dtos;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -7,39 +10,33 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace WebApi.Controllers
+namespace Api.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/Country")]
     [ApiController]
-    public class lectureController : ControllerBase
+    //[Authorize]
+    public class CountryController : ControllerBase
     {
+        CountryAppService _countryAppService;
 
-        LectureAppService _lectureAppService;
-
-        public lectureController(LectureAppService lectureAppService)
+        public CountryController(CountryAppService countryAppService)
         {
-            this._lectureAppService = lectureAppService;
+            this._countryAppService = countryAppService;
         }
 
         [HttpGet]
-        public IActionResult GetAllLecture()
+        public IActionResult GetAllCategories()
         {
-            return Ok(_lectureAppService.AllLecture());
+            return Ok(_countryAppService.GetAllCountries());
         }
         [HttpGet("{id}")]
-        public IActionResult GetLectureById(int id)
+        public IActionResult GetCountryById(int id)
         {
-            return Ok(_lectureAppService.GetLecture(id));
-        }
-
-        [HttpGet("GetAllCrsLectures")]
-        public IActionResult GetAllCrsLectures(int CrsID)
-        {
-            return Ok(_lectureAppService.AllCrsLecture(CrsID));
+            return Ok(_countryAppService.GetCountry(id));
         }
 
         [HttpPost]
-        public IActionResult Create(lectureViewModel LectureViewModel)
+        public IActionResult Create(CountryViewModel countryViewModel)
         {
 
             if (ModelState.IsValid == false)
@@ -48,8 +45,8 @@ namespace WebApi.Controllers
             }
             try
             {
-                _lectureAppService.SaveNewlecture(LectureViewModel);
-                return Created("CreateLecture", LectureViewModel);
+                _countryAppService.SaveNewCountry(countryViewModel);
+                return Created("Create Country", countryViewModel);
             }
             catch (Exception ex)
             {
@@ -59,7 +56,7 @@ namespace WebApi.Controllers
         }
 
         [HttpPut("{id}")]
-        public IActionResult Edit(int id, lectureViewModel LectureViewModel)
+        public IActionResult Edit(int id, CountryViewModel countryViewModel)
         {
 
             if (ModelState.IsValid == false)
@@ -68,8 +65,8 @@ namespace WebApi.Controllers
             }
             try
             {
-                _lectureAppService.Updatelecture(LectureViewModel);
-                return Ok(LectureViewModel);
+                _countryAppService.UpdateCountry(countryViewModel);
+                return Ok(countryViewModel);
             }
             catch (Exception ex)
             {
@@ -82,7 +79,7 @@ namespace WebApi.Controllers
         {
             try
             {
-                _lectureAppService.Deletelecture(id);
+                _countryAppService.DeleteCountry(id);
                 return NoContent();
             }
             catch (Exception ex)
@@ -90,5 +87,7 @@ namespace WebApi.Controllers
                 return BadRequest(ex.Message);
             }
         }
+
+
     }
 }

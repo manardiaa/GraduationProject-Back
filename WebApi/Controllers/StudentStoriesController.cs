@@ -1,45 +1,38 @@
-﻿using BL.AppServices;
-using BL.Dtos;
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using BL.AppServices;
+using BL.Dtos;
 
 namespace WebApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class lectureController : ControllerBase
+    public class StudentStoriesController : ControllerBase
     {
+        StudentStoriesAppService studentStoriesAppService;
 
-        LectureAppService _lectureAppService;
-
-        public lectureController(LectureAppService lectureAppService)
+        public StudentStoriesController(StudentStoriesAppService studentStoriesAppService)
         {
-            this._lectureAppService = lectureAppService;
+            this.studentStoriesAppService = studentStoriesAppService;
         }
 
         [HttpGet]
-        public IActionResult GetAllLecture()
+        public IActionResult GetAllStudentStories()
         {
-            return Ok(_lectureAppService.AllLecture());
+            return Ok(studentStoriesAppService.GetAllStudentStories());
         }
         [HttpGet("{id}")]
-        public IActionResult GetLectureById(int id)
+        public IActionResult GetStudentStoriesById(int id)
         {
-            return Ok(_lectureAppService.GetLecture(id));
-        }
-
-        [HttpGet("GetAllCrsLectures")]
-        public IActionResult GetAllCrsLectures(int CrsID)
-        {
-            return Ok(_lectureAppService.AllCrsLecture(CrsID));
+            return Ok(studentStoriesAppService.GetStudentStories(id));
         }
 
         [HttpPost]
-        public IActionResult Create(lectureViewModel LectureViewModel)
+        public IActionResult Create(StudentStoriesViewModel studentStoriesViewModel)
         {
 
             if (ModelState.IsValid == false)
@@ -48,8 +41,8 @@ namespace WebApi.Controllers
             }
             try
             {
-                _lectureAppService.SaveNewlecture(LectureViewModel);
-                return Created("CreateLecture", LectureViewModel);
+                studentStoriesAppService.SaveNewStudentStories(studentStoriesViewModel);
+                return Created("Create StudentStories", studentStoriesViewModel);
             }
             catch (Exception ex)
             {
@@ -59,7 +52,7 @@ namespace WebApi.Controllers
         }
 
         [HttpPut("{id}")]
-        public IActionResult Edit(int id, lectureViewModel LectureViewModel)
+        public IActionResult Edit(int id, StudentStoriesViewModel studentStoriesViewModel)
         {
 
             if (ModelState.IsValid == false)
@@ -68,8 +61,8 @@ namespace WebApi.Controllers
             }
             try
             {
-                _lectureAppService.Updatelecture(LectureViewModel);
-                return Ok(LectureViewModel);
+                studentStoriesAppService.UpdateStudentStories(studentStoriesViewModel);
+                return Ok(studentStoriesViewModel);
             }
             catch (Exception ex)
             {
@@ -82,7 +75,7 @@ namespace WebApi.Controllers
         {
             try
             {
-                _lectureAppService.Deletelecture(id);
+                studentStoriesAppService.DeleteStudentStories(id);
                 return NoContent();
             }
             catch (Exception ex)
@@ -90,5 +83,6 @@ namespace WebApi.Controllers
                 return BadRequest(ex.Message);
             }
         }
+
     }
 }

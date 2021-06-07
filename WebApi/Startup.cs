@@ -75,6 +75,14 @@ namespace WebApi
             services.AddTransient<QuestionOptionsAppService>();
             services.AddTransient<StudentAnswerAppService>();
             services.AddTransient<TrueAndFalseAppService>();
+            services.AddTransient<MentorOrInstractorStoriesAppService>();
+            services.AddTransient<CountryAppService>();
+            services.AddTransient<ConsultationAppService>();
+            services.AddTransient<SubCategoryAppService>();
+            services.AddTransient<StudentReviewsAppService>();
+            services.AddTransient<StudentStoriesAppService>();
+
+
             services.AddHttpContextAccessor();//allow me to get user information such as id
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 

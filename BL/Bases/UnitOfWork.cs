@@ -218,7 +218,75 @@ namespace BL.Bases
         }
 
 
+        public CountryRepository Country;
+        public CountryRepository country
+        {
+            get
+            {
+                if (Country == null)
+                    Country = new CountryRepository(U_DbContext);
+                return Country;
+            }
+        }
 
-       
+        public ConsultationRepository Consultation;
+        public ConsultationRepository consultation
+        {
+            get
+            {
+                if (Consultation == null)
+                    Consultation = new ConsultationRepository(U_DbContext);
+                return Consultation;
+            }
+        }
+
+
+        public MentorOrInstractorStoriesRepository MentorOrInstractor;
+        public MentorOrInstractorStoriesRepository mentorOrInstractor
+        {
+            get
+            {
+                if (MentorOrInstractor == null)
+                    MentorOrInstractor = new MentorOrInstractorStoriesRepository(U_DbContext);
+                return MentorOrInstractor;
+            }
+        }
+
+
+        public StudentReviewsRepository StudentReviews;
+        public StudentReviewsRepository studentReviews
+        {
+            get
+            {
+                if (StudentReviews == null)
+                    StudentReviews = new StudentReviewsRepository(U_DbContext);
+                return StudentReviews;
+            }
+        }
+
+
+
+        public StudentStoriesRepository StudentStories;
+        public StudentStoriesRepository studentStories
+        {
+            get
+            {
+                if (StudentStories == null)
+                    StudentStories = new StudentStoriesRepository(U_DbContext);
+                return StudentStories;
+            }
+        }
+
+
+        public SubCategoryRepository SubCategory;
+        public SubCategoryRepository subCategory
+        {
+            get
+            {
+                if (SubCategory == null)
+                    SubCategory = new SubCategoryRepository(U_DbContext);
+                return SubCategory;
+            }
+        }
     }
 }

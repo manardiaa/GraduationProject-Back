@@ -4,14 +4,16 @@ using DAL;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace DAL.Migrations
 {
     [DbContext(typeof(ApplicationDBContext))]
-    partial class ApplicationDBContextModelSnapshot : ModelSnapshot
+    [Migration("20210603173223_init4")]
+    partial class init4
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -105,12 +107,6 @@ namespace DAL.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("CatDescription")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("CatImage")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("CatName")
                         .HasColumnType("nvarchar(max)");
 
@@ -156,8 +152,8 @@ namespace DAL.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Country_Name")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("Country_Name")
+                        .HasColumnType("int");
 
                     b.HasKey("id");
 
@@ -174,26 +170,14 @@ namespace DAL.Migrations
                     b.Property<int>("CategoryId")
                         .HasColumnType("int");
 
-                    b.Property<string>("CrsLogo")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<int>("LectureNumber")
                         .HasColumnType("int");
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("PartLogo")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PreRequest")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<float>("Price")
                         .HasColumnType("real");
-
-                    b.Property<int>("SubCategoryId")
-                        .HasColumnType("int");
 
                     b.Property<string>("description")
                         .HasColumnType("nvarchar(max)");
@@ -207,8 +191,6 @@ namespace DAL.Migrations
                     b.HasKey("id");
 
                     b.HasIndex("CategoryId");
-
-                    b.HasIndex("SubCategoryId");
 
                     b.ToTable("Course");
                 });
@@ -298,9 +280,6 @@ namespace DAL.Migrations
 
                     b.Property<string>("MemberType")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("ShowOrNot")
-                        .HasColumnType("int");
 
                     b.Property<string>("Specialzation")
                         .HasColumnType("nvarchar(max)");
@@ -434,9 +413,6 @@ namespace DAL.Migrations
                     b.Property<int>("Rate")
                         .HasColumnType("int");
 
-                    b.Property<int>("ShowOrNot")
-                        .HasColumnType("int");
-
                     b.Property<string>("StdReviews")
                         .HasColumnType("nvarchar(max)");
 
@@ -457,9 +433,6 @@ namespace DAL.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("ShowOrNot")
-                        .HasColumnType("int");
-
                     b.Property<string>("Specialzation")
                         .HasColumnType("nvarchar(max)");
 
@@ -474,26 +447,6 @@ namespace DAL.Migrations
                     b.HasIndex("StudentId");
 
                     b.ToTable("StudentStories");
-                });
-
-            modelBuilder.Entity("DAL.Models.SubCategory", b =>
-                {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("CategoryID")
-                        .HasColumnType("int");
-
-                    b.Property<string>("SubCategoryTitle")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("ID");
-
-                    b.HasIndex("CategoryID");
-
-                    b.ToTable("SubCategory");
                 });
 
             modelBuilder.Entity("DAL.Models.TrueAndFalse", b =>
@@ -525,9 +478,6 @@ namespace DAL.Migrations
 
                     b.Property<int>("CourseId")
                         .HasColumnType("int");
-
-                    b.Property<string>("LectureDescription")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Tilte")
                         .HasColumnType("nvarchar(max)");
@@ -759,15 +709,7 @@ namespace DAL.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("DAL.Models.SubCategory", "SubCategory")
-                        .WithMany()
-                        .HasForeignKey("SubCategoryId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.Navigation("Category");
-
-                    b.Navigation("SubCategory");
                 });
 
             modelBuilder.Entity("DAL.Models.CourseVideos", b =>
@@ -918,17 +860,6 @@ namespace DAL.Migrations
                         .HasForeignKey("StudentId");
 
                     b.Navigation("ApplicationStudentIdentity");
-                });
-
-            modelBuilder.Entity("DAL.Models.SubCategory", b =>
-                {
-                    b.HasOne("DAL.Models.Category", "Category")
-                        .WithMany()
-                        .HasForeignKey("CategoryID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Category");
                 });
 
             modelBuilder.Entity("DAL.Models.TrueAndFalse", b =>
