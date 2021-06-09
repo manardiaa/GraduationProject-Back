@@ -21,6 +21,7 @@ namespace WebApi.Controllers
         }
 
         [HttpGet]
+        //       api/Course
         public IActionResult GetAllCourses()
         {
             return Ok(_courseAppService.GetAllCourses());
