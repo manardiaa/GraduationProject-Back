@@ -39,6 +39,13 @@ namespace BL.Configurations
             CreateMap<StudentStories, StudentStoriesViewModel>().ReverseMap();
             CreateMap<SubCategory, SubCategoryViewModel>().ReverseMap();
 
+            CreateMap<Payment, PaymentViewModel>().ReverseMap();
+            CreateMap<Order, OrderViewModel>().ReverseMap();
+            CreateMap<OrderDetails, OrderDetailsViewModel>()
+                 .ForMember(vm => vm.CourseName, m => m.MapFrom(u => u.Course.Name)).ReverseMap()
+                 .ForMember(m => m.Order, m => m.Ignore())
+                 .ForMember(m => m.Course, m => m.Ignore());
+
 
         }
 
