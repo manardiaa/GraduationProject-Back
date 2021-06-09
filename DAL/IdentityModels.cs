@@ -34,7 +34,7 @@ namespace DAL
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder
-               .UseSqlServer("Data Source=ASUS;Initial Catalog=UdacityDB;Integrated Security=True"
+               .UseSqlServer("Data Source=.;Initial Catalog=UdacityDB;Integrated Security=True"
                , options => options.EnableRetryOnFailure());
         }
         protected override void OnModelCreating(ModelBuilder builder)
