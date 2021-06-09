@@ -23,8 +23,16 @@ namespace BL.AppServices
 
         public List<CourseViewModel> GetAllCourses()
         {
-
             return Mapper.Map<List<CourseViewModel>>(TheUnitOfWork.course.GetAllCourse());
+        }
+
+        public List<CourseViewModel> GetFristFourCoures(int CatId)
+        {
+            return Mapper.Map<List<CourseViewModel>>(TheUnitOfWork.course.GetTopFourCourses(CatId));
+        }
+        public List<CourseViewModel> GetNextFourCourses(int CatId)
+        {
+            return Mapper.Map<List<CourseViewModel>>(TheUnitOfWork.course.GetNextFourCourses(CatId));
         }
         public CourseViewModel GetCourse(int id)
         {
@@ -73,6 +81,16 @@ namespace BL.AppServices
         {
             Course course = Mapper.Map<Course>(courseViewModel);
             return TheUnitOfWork.course.CheckCourseExists(course);
+        }
+
+        public List<CourseViewModel> GetAllCrsByCatID(int CatID)
+        {
+            return Mapper.Map<List<CourseViewModel>>(TheUnitOfWork.course.GetAllCourseByCatID(CatID));            
+        }
+
+        public List<CourseViewModel> GetListOfTwoCrsByCatID(int CatID)
+        {
+            return Mapper.Map<List<CourseViewModel>>(TheUnitOfWork.course.GetTopTwoCrs(CatID));
         }
         #endregion
 

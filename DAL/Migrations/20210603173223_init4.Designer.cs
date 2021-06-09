@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DAL.Migrations
 {
     [DbContext(typeof(ApplicationDBContext))]
-    [Migration("20210529000558_init2")]
-    partial class init2
+    [Migration("20210603173223_init4")]
+    partial class init4
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -113,6 +113,51 @@ namespace DAL.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Category");
+                });
+
+            modelBuilder.Entity("DAL.Models.Consultation", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("FristName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LastName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("OrganizationName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("OrganizationSize")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PhoneNumber")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("WorkEmail")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Consultation");
+                });
+
+            modelBuilder.Entity("DAL.Models.Country", b =>
+                {
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("Country_Name")
+                        .HasColumnType("int");
+
+                    b.HasKey("id");
+
+                    b.ToTable("Country");
                 });
 
             modelBuilder.Entity("DAL.Models.Course", b =>
@@ -220,6 +265,35 @@ namespace DAL.Migrations
                     b.ToTable("EnrollCourse");
                 });
 
+            modelBuilder.Entity("DAL.Models.MentorOrInstractorStories", b =>
+                {
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("CountryID")
+                        .HasColumnType("int");
+
+                    b.Property<string>("FullName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("MemberType")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Specialzation")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Story")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("id");
+
+                    b.HasIndex("CountryID");
+
+                    b.ToTable("MentorOrInstractorStories");
+                });
+
             modelBuilder.Entity("DAL.Models.Question", b =>
                 {
                     b.Property<int>("Id")
@@ -324,6 +398,55 @@ namespace DAL.Migrations
                     b.HasIndex("StudentId");
 
                     b.ToTable("StudentAnswers");
+                });
+
+            modelBuilder.Entity("DAL.Models.StudentReviews", b =>
+                {
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("FullName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Rate")
+                        .HasColumnType("int");
+
+                    b.Property<string>("StdReviews")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("StudentID")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("id");
+
+                    b.HasIndex("StudentID");
+
+                    b.ToTable("StudentReview");
+                });
+
+            modelBuilder.Entity("DAL.Models.StudentStories", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Specialzation")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Story")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("StudentId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("StudentId");
+
+                    b.ToTable("StudentStories");
                 });
 
             modelBuilder.Entity("DAL.Models.TrueAndFalse", b =>
@@ -636,6 +759,17 @@ namespace DAL.Migrations
                     b.Navigation("Course");
                 });
 
+            modelBuilder.Entity("DAL.Models.MentorOrInstractorStories", b =>
+                {
+                    b.HasOne("DAL.Models.Country", "Country")
+                        .WithMany()
+                        .HasForeignKey("CountryID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Country");
+                });
+
             modelBuilder.Entity("DAL.Models.Question", b =>
                 {
                     b.HasOne("DAL.Models.QuestionGroup", "QustionGroup")
@@ -708,6 +842,24 @@ namespace DAL.Migrations
                     b.Navigation("Question");
 
                     b.Navigation("Student");
+                });
+
+            modelBuilder.Entity("DAL.Models.StudentReviews", b =>
+                {
+                    b.HasOne("DAL.ApplicationStudentIdentity", "ApplicationStudentIdentity")
+                        .WithMany()
+                        .HasForeignKey("StudentID");
+
+                    b.Navigation("ApplicationStudentIdentity");
+                });
+
+            modelBuilder.Entity("DAL.Models.StudentStories", b =>
+                {
+                    b.HasOne("DAL.ApplicationStudentIdentity", "ApplicationStudentIdentity")
+                        .WithMany()
+                        .HasForeignKey("StudentId");
+
+                    b.Navigation("ApplicationStudentIdentity");
                 });
 
             modelBuilder.Entity("DAL.Models.TrueAndFalse", b =>

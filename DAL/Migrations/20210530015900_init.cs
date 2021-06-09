@@ -87,6 +87,7 @@ namespace DAL.Migrations
                     Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     countery = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Image = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    isDelete = table.Column<bool>(type: "bit", nullable: false),
                     Courseid = table.Column<int>(type: "int", nullable: true),
                     UserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
@@ -325,6 +326,8 @@ namespace DAL.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    title = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    QGroupID = table.Column<int>(type: "int", nullable: false),
                     LectureId = table.Column<int>(type: "int", nullable: false),
                     CourseId = table.Column<int>(type: "int", nullable: false),
                     LessonId = table.Column<int>(type: "int", nullable: false),
@@ -375,7 +378,7 @@ namespace DAL.Migrations
                         column: x => x.VideoLinkId,
                         principalTable: "CourseVideos",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_lessonContents_lessones_LessonId",
                         column: x => x.LessonId,

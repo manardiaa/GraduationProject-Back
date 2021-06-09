@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DAL.Migrations
 {
     [DbContext(typeof(ApplicationDBContext))]
-    [Migration("20210528051815_init3")]
-    partial class init3
+    [Migration("20210530015900_init")]
+    partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -81,6 +81,9 @@ namespace DAL.Migrations
 
                     b.Property<string>("countery")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("isDelete")
+                        .HasColumnType("bit");
 
                     b.HasKey("Id");
 

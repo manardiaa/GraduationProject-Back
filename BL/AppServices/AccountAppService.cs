@@ -178,9 +178,9 @@ namespace BL.AppServices
 
             };
             Register(firstAdmin).Wait();
-            //ApplicationStudentIdentity foundedAdmin = await FindByName(firstAdmin.UserName);
-            //if(foundedAdmin != null)
-            //    AssignToRole(foundedAdmin.Id, UserRoles.Admin).Wait();
+            ApplicationStudentIdentity foundedAdmin = await FindByName(firstAdmin.UserName);
+            if (foundedAdmin != null)
+                AssignToRole(foundedAdmin.Id, UserRoles.Admin).Wait();
         }
 
 

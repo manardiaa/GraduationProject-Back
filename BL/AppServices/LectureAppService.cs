@@ -25,6 +25,13 @@ namespace BL.AppServices
 
             return Mapper.Map<List<lectureViewModel>>(TheUnitOfWork.lecture.GetAllLecture());
         }
+
+        public List<lectureViewModel> AllCrsLecture(int CrsID)
+        {
+
+            return Mapper.Map<List<lectureViewModel>>(TheUnitOfWork.lecture.GetCrsLectures(CrsID));
+        }
+
         public lectureViewModel GetLecture(int id)
         {
             return Mapper.Map<lectureViewModel>(TheUnitOfWork.lecture.GetById(id));

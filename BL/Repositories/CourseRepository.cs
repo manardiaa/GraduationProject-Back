@@ -25,6 +25,25 @@ namespace BL.Repositories
             return GetAll().ToList();
         }
 
+        public List<Course> GetAllCourseByCatID(int Catid)
+        {
+            return GetWhere(crs => crs.CategoryId == Catid).ToList();
+        }
+        public List<Course> GetTopFourCourses(int Catid)
+        {
+            return GetWhere(crs => crs.CategoryId == Catid).Take(4).ToList();
+        }
+
+        public List<Course> GetNextFourCourses(int Catid)
+        {
+            return GetWhere(crs => crs.CategoryId == Catid).Skip(4).Take(4).ToList();
+        }
+
+        public List<Course> GetTopTwoCrs(int Catid)
+        {
+            return GetWhere(crs => crs.CategoryId == Catid).Skip(1).Take(2).ToList();
+        }      
+
         public bool InsertCourse(Course course)
         {
             return Insert(course);

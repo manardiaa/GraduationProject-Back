@@ -13,6 +13,7 @@ namespace BL.Dtos
         public string Tilte { get; set; }
         public int CourseId { get; set;}
         public int lessoneNumber { get; set; }
-        
+        public string LectureDescription { get; set; }
+
     }
 }

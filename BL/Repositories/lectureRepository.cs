@@ -23,6 +23,10 @@ namespace BL.Repositories
         }
         #region CRUB
 
+        public List<lecture> GetCrsLectures(int CrsID)
+        {
+            return GetWhere(crs => crs.CourseId == CrsID).ToList();
+        }
         public List<lecture> GetAllLecture()
         {
             return GetAll().ToList();

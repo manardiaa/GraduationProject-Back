@@ -1,5 +1,8 @@
 ﻿using BL.AppServices;
+using BL.StaticClasses;
 using BL.Dtos;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -7,39 +10,32 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace WebApi.Controllers
+namespace Api.Controllers
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class lectureController : ControllerBase
+    [Route("api/Consultations")]
+    [ApiController]    
+    public class ConsultationsController : ControllerBase
     {
+        ConsultationAppService consultationAppService;
 
-        LectureAppService _lectureAppService;
-
-        public lectureController(LectureAppService lectureAppService)
+        public ConsultationsController(ConsultationAppService consultationAppService)
         {
-            this._lectureAppService = lectureAppService;
+            this.consultationAppService = consultationAppService;
         }
 
         [HttpGet]
-        public IActionResult GetAllLecture()
+        public IActionResult GetAllConsultation()
         {
-            return Ok(_lectureAppService.AllLecture());
+            return Ok(consultationAppService.GetAllConsultations());
         }
         [HttpGet("{id}")]
-        public IActionResult GetLectureById(int id)
+        public IActionResult GetConsultationById(int id)
         {
-            return Ok(_lectureAppService.GetLecture(id));
-        }
-
-        [HttpGet("GetAllCrsLectures")]
-        public IActionResult GetAllCrsLectures(int CrsID)
-        {
-            return Ok(_lectureAppService.AllCrsLecture(CrsID));
+            return Ok(consultationAppService.GetConsultation(id));
         }
 
         [HttpPost]
-        public IActionResult Create(lectureViewModel LectureViewModel)
+        public IActionResult Create(ConsultationViewModel consultationViewModel)
         {
 
             if (ModelState.IsValid == false)
@@ -48,8 +44,8 @@ namespace WebApi.Controllers
             }
             try
             {
-                _lectureAppService.SaveNewlecture(LectureViewModel);
-                return Created("CreateLecture", LectureViewModel);
+                consultationAppService.SaveNewConsultation(consultationViewModel);
+                return Created("Create Consultation", consultationViewModel);
             }
             catch (Exception ex)
             {
@@ -59,7 +55,7 @@ namespace WebApi.Controllers
         }
 
         [HttpPut("{id}")]
-        public IActionResult Edit(int id, lectureViewModel LectureViewModel)
+        public IActionResult Edit(int id, ConsultationViewModel consultationViewModel)
         {
 
             if (ModelState.IsValid == false)
@@ -68,8 +64,8 @@ namespace WebApi.Controllers
             }
             try
             {
-                _lectureAppService.Updatelecture(LectureViewModel);
-                return Ok(LectureViewModel);
+                consultationAppService.UpdateConsultation(consultationViewModel);
+                return Ok(consultationViewModel);
             }
             catch (Exception ex)
             {
@@ -82,7 +78,7 @@ namespace WebApi.Controllers
         {
             try
             {
-                _lectureAppService.Deletelecture(id);
+                consultationAppService.DeleteConsultation(id);
                 return NoContent();
             }
             catch (Exception ex)
@@ -90,5 +86,7 @@ namespace WebApi.Controllers
                 return BadRequest(ex.Message);
             }
         }
+
+
     }
 }

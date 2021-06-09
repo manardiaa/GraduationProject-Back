@@ -31,6 +31,33 @@ namespace WebApi.Controllers
             return Ok(_courseAppService.GetCourse(id));
         }
 
+        [HttpGet("/CourseByCategory/{Catid}")]
+
+        public IActionResult GetCrsListByCatid(int Catid)
+        {
+            return Ok(_courseAppService.GetAllCrsByCatID(Catid));
+        }
+        
+        [HttpGet("/GetTopTwoCrs/{Catid}")]
+        public IActionResult GetListOfTwoCrs(int Catid)
+        {
+            return Ok(_courseAppService.GetListOfTwoCrsByCatID(Catid));
+        }
+
+
+        [HttpGet("/PrevCrs")]
+        public IActionResult PrevFourCourses(int CatId)
+        {
+            return Ok(_courseAppService.GetFristFourCoures(CatId));
+        }
+        [HttpGet("/NextCrs")]
+        public IActionResult NextFourCourses(int CatId)
+        {
+            return Ok(_courseAppService.GetNextFourCourses(CatId));
+        }
+
+
+
         [HttpPost]
         public IActionResult Create(CourseViewModel courseViewModel)
         {
