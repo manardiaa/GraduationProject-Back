@@ -29,6 +29,15 @@ namespace BL.Repositories
         {
             return GetWhere(crs => crs.CategoryId == Catid).ToList();
         }
+        public List<Course> GetTopFourCourses(int Catid)
+        {
+            return GetWhere(crs => crs.CategoryId == Catid).Take(4).ToList();
+        }
+
+        public List<Course> GetNextFourCourses(int Catid)
+        {
+            return GetWhere(crs => crs.CategoryId == Catid).Skip(4).Take(4).ToList();
+        }
 
         public List<Course> GetTopTwoCrs(int Catid)
         {

@@ -486,6 +486,9 @@ namespace DAL.Migrations
                     b.Property<int>("CategoryID")
                         .HasColumnType("int");
 
+                    b.Property<string>("SubCategoryDescribtion")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("SubCategoryTitle")
                         .HasColumnType("nvarchar(max)");
 

@@ -82,6 +82,16 @@ namespace BL.AppServices
         {
             return Mapper.Map<List<MentorOrInstractorStoriesViewModel>>(TheUnitOfWork.mentorOrInstractor.GetTopFourMentorStories());
         }
+
+        public List<MentorOrInstractorStoriesViewModel> GetAllMentors()
+        {
+            return Mapper.Map<List<MentorOrInstractorStoriesViewModel>>(TheUnitOfWork.mentorOrInstractor.AllMentors());
+        }
+
+        public List<MentorOrInstractorStoriesViewModel> GetAllInstractor()
+        {
+            return Mapper.Map<List<MentorOrInstractorStoriesViewModel>>(TheUnitOfWork.mentorOrInstractor.AllInstractors());
+        }
         #endregion
 
 
