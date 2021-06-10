@@ -17,28 +17,12 @@ namespace DAL.Models
         [Required]
         [MinLength(16), MaxLength(16)]
         public string CardNumber { get; set; }
-
-
-
-
         [DataType(DataType.Date), Required]
         [DisplayFormat(DataFormatString = "{0:yyyy/MM/dd}", ApplyFormatInEditMode = true)]
-
-
-
-        public DateTime ExperationDate { get; set; }
-
-
-
-      
-
-
-
+        public DateTime ExperationDate { get; set; }      
         [Required]
         [MinLength(3), MaxLength(3)]
         public string cvc { get; set; }
-
-
 
         [ForeignKey("ApplicationStudentIdentity")]
         public string ApplicationStudentIdentity_Id { get; set; }

@@ -41,7 +41,7 @@ namespace BL.Repositories
 
         public List<Course> GetTopTwoCrs(int Catid)
         {
-            return GetWhere(crs => crs.CategoryId == Catid).Skip(1).Take(2).ToList();
+            return GetWhere(crs => crs.CategoryId == Catid).Take(2).ToList();
         }      
 
         public bool InsertCourse(Course course)

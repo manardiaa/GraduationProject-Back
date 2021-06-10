@@ -29,6 +29,11 @@ namespace WebApi.Controllers
         public IActionResult GetStudentReviewsById(int id)
         {
             return Ok(studentReviewsAppService.GetStudentReviews(id));
+        } 
+        [HttpGet("topFourReviews")]
+        public IActionResult GetTopFourStdReviews()
+        {
+            return Ok(studentReviewsAppService.TopFourStdReviews());
         }
 
         [HttpPost]

@@ -26,6 +26,12 @@ namespace BL.Repositories
             return GetAll().ToList();
         }
 
+
+        public List<StudentReviews> GetTopFourReviews()
+        {
+            return GetWhere(stdR => stdR.ShowOrNot == 1).Take(4).ToList();
+        }
+
         public bool InsertStudentReviews(StudentReviews studentReviews)
         {
             return Insert(studentReviews);
