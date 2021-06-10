@@ -457,6 +457,9 @@ namespace DAL.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int>("CategoryId")
+                        .HasColumnType("int");
+
                     b.Property<int>("ShowOrNot")
                         .HasColumnType("int");
 
@@ -470,6 +473,8 @@ namespace DAL.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("CategoryId");
 
                     b.HasIndex("StudentId");
 
@@ -916,11 +921,19 @@ namespace DAL.Migrations
 
             modelBuilder.Entity("DAL.Models.StudentStories", b =>
                 {
+                    b.HasOne("DAL.Models.Category", "Category")
+                        .WithMany()
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("DAL.ApplicationStudentIdentity", "ApplicationStudentIdentity")
                         .WithMany()
                         .HasForeignKey("StudentId");
 
                     b.Navigation("ApplicationStudentIdentity");
+
+                    b.Navigation("Category");
                 });
 
             modelBuilder.Entity("DAL.Models.SubCategory", b =>

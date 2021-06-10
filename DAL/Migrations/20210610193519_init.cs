@@ -27,11 +27,44 @@ namespace DAL.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    CatName = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    CatName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CatImage = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CatDescription = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Category", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Consultation",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    FristName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    LastName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    WorkEmail = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    PhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    OrganizationName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    OrganizationSize = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Consultation", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Country",
+                columns: table => new
+                {
+                    id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Country_Name = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Country", x => x.id);
                 });
 
             migrationBuilder.CreateTable(
@@ -56,6 +89,51 @@ namespace DAL.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "SubCategory",
+                columns: table => new
+                {
+                    ID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    SubCategoryTitle = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    SubCategoryDescribtion = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CategoryID = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_SubCategory", x => x.ID);
+                    table.ForeignKey(
+                        name: "FK_SubCategory_Category_CategoryID",
+                        column: x => x.CategoryID,
+                        principalTable: "Category",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "MentorOrInstractorStories",
+                columns: table => new
+                {
+                    id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    FullName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Specialzation = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Story = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CountryID = table.Column<int>(type: "int", nullable: false),
+                    MemberType = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ShowOrNot = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_MentorOrInstractorStories", x => x.id);
+                    table.ForeignKey(
+                        name: "FK_MentorOrInstractorStories_Country_CountryID",
+                        column: x => x.CountryID,
+                        principalTable: "Country",
+                        principalColumn: "id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Course",
                 columns: table => new
                 {
@@ -67,7 +145,11 @@ namespace DAL.Migrations
                     type = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     description = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     LectureNumber = table.Column<int>(type: "int", nullable: false),
-                    CategoryId = table.Column<int>(type: "int", nullable: false)
+                    CategoryId = table.Column<int>(type: "int", nullable: false),
+                    SubCategoryId = table.Column<int>(type: "int", nullable: false),
+                    PartLogo = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    PreRequest = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CrsLogo = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -77,7 +159,13 @@ namespace DAL.Migrations
                         column: x => x.CategoryId,
                         principalTable: "Category",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Course_SubCategory_SubCategoryId",
+                        column: x => x.SubCategoryId,
+                        principalTable: "SubCategory",
+                        principalColumn: "ID",
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -123,7 +211,8 @@ namespace DAL.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Tilte = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CourseId = table.Column<int>(type: "int", nullable: false),
-                    lessoneNumber = table.Column<int>(type: "int", nullable: false)
+                    lessoneNumber = table.Column<int>(type: "int", nullable: false),
+                    LectureDescription = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -246,6 +335,58 @@ namespace DAL.Migrations
                         column: x => x.CourseId,
                         principalTable: "Course",
                         principalColumn: "id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "StudentReview",
+                columns: table => new
+                {
+                    id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    FullName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Rate = table.Column<int>(type: "int", nullable: false),
+                    StdReviews = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    StudentID = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    ShowOrNot = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_StudentReview", x => x.id);
+                    table.ForeignKey(
+                        name: "FK_StudentReview_AspNetUsers_StudentID",
+                        column: x => x.StudentID,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "StudentStories",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Specialzation = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Story = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    StudentId = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    ShowOrNot = table.Column<int>(type: "int", nullable: false),
+                    CategoryId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_StudentStories", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_StudentStories_AspNetUsers_StudentId",
+                        column: x => x.StudentId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_StudentStories_Category_CategoryId",
+                        column: x => x.CategoryId,
+                        principalTable: "Category",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -378,7 +519,7 @@ namespace DAL.Migrations
                         column: x => x.VideoLinkId,
                         principalTable: "CourseVideos",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_lessonContents_lessones_LessonId",
                         column: x => x.LessonId,
@@ -524,6 +665,11 @@ namespace DAL.Migrations
                 column: "CategoryId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Course_SubCategoryId",
+                table: "Course",
+                column: "SubCategoryId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_CourseVideos_CourseId",
                 table: "CourseVideos",
                 column: "CourseId");
@@ -574,6 +720,11 @@ namespace DAL.Migrations
                 column: "LectureId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_MentorOrInstractorStories_CountryID",
+                table: "MentorOrInstractorStories",
+                column: "CountryID");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Questiones_QuestionGroupId",
                 table: "Questiones",
                 column: "QuestionGroupId");
@@ -612,6 +763,26 @@ namespace DAL.Migrations
                 name: "IX_StudentAnswers_StudentId",
                 table: "StudentAnswers",
                 column: "StudentId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_StudentReview_StudentID",
+                table: "StudentReview",
+                column: "StudentID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_StudentStories_CategoryId",
+                table: "StudentStories",
+                column: "CategoryId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_StudentStories_StudentId",
+                table: "StudentStories",
+                column: "StudentId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_SubCategory_CategoryID",
+                table: "SubCategory",
+                column: "CategoryID");
 
             migrationBuilder.CreateIndex(
                 name: "IX_TrueAndFalses_QustionId",
@@ -685,10 +856,16 @@ namespace DAL.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
+                name: "Consultation");
+
+            migrationBuilder.DropTable(
                 name: "DragAndDrop");
 
             migrationBuilder.DropTable(
                 name: "EnrollCourse");
+
+            migrationBuilder.DropTable(
+                name: "MentorOrInstractorStories");
 
             migrationBuilder.DropTable(
                 name: "QuestionOptiones");
@@ -697,10 +874,19 @@ namespace DAL.Migrations
                 name: "StudentAnswers");
 
             migrationBuilder.DropTable(
+                name: "StudentReview");
+
+            migrationBuilder.DropTable(
+                name: "StudentStories");
+
+            migrationBuilder.DropTable(
                 name: "TrueAndFalses");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
+
+            migrationBuilder.DropTable(
+                name: "Country");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
@@ -710,6 +896,9 @@ namespace DAL.Migrations
 
             migrationBuilder.DropTable(
                 name: "Course");
+
+            migrationBuilder.DropTable(
+                name: "SubCategory");
 
             migrationBuilder.DropTable(
                 name: "Category");

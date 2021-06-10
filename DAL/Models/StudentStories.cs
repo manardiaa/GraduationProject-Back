@@ -15,7 +15,10 @@ namespace DAL.Models
         public string Story { get; set; }
         public string StudentId { get; set; }
         public int ShowOrNot { get; set; } = 0;
+        public int CategoryId { get; set; }
 
+        [ForeignKey("CategoryId")]
+        public virtual Category Category { get; set; }
         [ForeignKey("StudentId")]
         public ApplicationStudentIdentity ApplicationStudentIdentity { get; set; }
 

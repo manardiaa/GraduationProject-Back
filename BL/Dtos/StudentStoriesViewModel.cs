@@ -13,5 +13,7 @@ namespace BL.Dtos
         public string Story { get; set; }
         public string StudentId { get; set; }
         public int ShowOrNot { get; set; } = 0;
+        public int CategoryId { get; set; }
+
     }
 }
