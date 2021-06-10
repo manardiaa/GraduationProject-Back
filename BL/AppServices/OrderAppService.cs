@@ -105,7 +105,7 @@ namespace BL.AppServices
         {
             if (orderViewModel == null)
                 throw new ArgumentNullException();
-            if (orderViewModel.ApplicationStudentIdentity_Id == null || orderViewModel.ApplicationUserIdentity_Id == string.Empty)
+            if (orderViewModel.ApplicationStudentIdentity_Id == null || orderViewModel.ApplicationStudentIdentity_Id == string.Empty)
                 throw new ArgumentException();
             Order order = Mapper.Map<Order>(orderViewModel);
             return TheUnitOfWork.Order.CheckOrderExists(order);

@@ -8,24 +8,23 @@ using System.Threading.Tasks;
 
 
 namespace BL.Dtos
-{​​​​​​​
+{ 
     public class OrderDetailsViewModel
-    {​​​​​​​
-        public int ID {​​​​​​​ get; set; }​​​​​​​
+    { 
+        public int ID { get; set; }
         [Display(Name = "Total Price")]
-        public double TotalCourse {​​​​​​​ get; set; }​​​​​​​
-   
+        public double ToTalCourse { get; set; }
         [Display(Name = "Discount")]
-        public double CourseDiscount {​​​​​​​ get; set; }​​​​​​​
+        public double CourseDiscount { get; set; }
         [Display(Name = "Net Price")]
-        public double CourseNetPrice {​​​​​​​ get; set; }​​​​​​​
+        public double CourseNetPrice { get; set; }
       
         public double totalOrderPrice { get; set; }
-        public int CourseID {​​​​​​​ get; set; }​​​​​​​
-        public int orderID {​​​​​​​ get; set; }​​​​​​​
+        public int CourseID { get; set; }
+        public int orderID { get; set; }
 
-       public string CourseName {​​​​​​​ get; set; }​​​​​​​
-    }​​​​​​​
-   
-}​​​​​​​
+       public string CourseName { get; set; }
+    }
+
+}
  

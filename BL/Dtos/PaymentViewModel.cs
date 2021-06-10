@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 
 namespace BL.Dtos
-{
+{ 
     public class PaymentViewModel
-    {
+    { 
         public int ID { get; set; }
         [Required]
         [MinLength(16), MaxLength(16)]
