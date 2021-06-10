@@ -32,8 +32,8 @@ namespace BL.Interfaces
         StudentReviewsRepository studentReviews { get; }
         StudentStoriesRepository studentStories { get; }
         SubCategoryRepository subCategory { get; }
-        OrderRepository Order { get; }
+       
         PaymentRepository Payment { get; }
-        OrderDetailsRepository OrderDetails { get; }
+       
     }
 }

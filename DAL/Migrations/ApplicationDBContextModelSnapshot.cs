@@ -177,6 +177,9 @@ namespace DAL.Migrations
                     b.Property<string>("CrsLogo")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<float>("Discount")
+                        .HasColumnType("real");
+
                     b.Property<int>("LectureNumber")
                         .HasColumnType("int");
 
@@ -313,6 +316,36 @@ namespace DAL.Migrations
                     b.HasIndex("CountryID");
 
                     b.ToTable("MentorOrInstractorStories");
+                });
+
+            modelBuilder.Entity("DAL.Models.Payment", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("ApplicationStudentIdentity_Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("CardNumber")
+                        .IsRequired()
+                        .HasMaxLength(16)
+                        .HasColumnType("nvarchar(16)");
+
+                    b.Property<DateTime>("ExperationDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("cvc")
+                        .IsRequired()
+                        .HasMaxLength(3)
+                        .HasColumnType("nvarchar(3)");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("ApplicationStudentIdentity_Id");
+
+                    b.ToTable("Payment");
                 });
 
             modelBuilder.Entity("DAL.Models.Question", b =>
@@ -834,6 +867,15 @@ namespace DAL.Migrations
                         .IsRequired();
 
                     b.Navigation("Country");
+                });
+
+            modelBuilder.Entity("DAL.Models.Payment", b =>
+                {
+                    b.HasOne("DAL.ApplicationStudentIdentity", "ApplicationStudentIdentity")
+                        .WithMany()
+                        .HasForeignKey("ApplicationStudentIdentity_Id");
+
+                    b.Navigation("ApplicationStudentIdentity");
                 });
 
             modelBuilder.Entity("DAL.Models.Question", b =>

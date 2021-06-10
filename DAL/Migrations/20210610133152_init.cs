@@ -85,7 +85,7 @@ namespace DAL.Migrations
                         column: x => x.RoleId,
                         principalTable: "AspNetRoles",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -130,7 +130,7 @@ namespace DAL.Migrations
                         column: x => x.CountryID,
                         principalTable: "Country",
                         principalColumn: "id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -141,6 +141,7 @@ namespace DAL.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Price = table.Column<float>(type: "real", nullable: false),
+                    Discount = table.Column<float>(type: "real", nullable: false),
                     duration = table.Column<float>(type: "real", nullable: false),
                     type = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     description = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -222,7 +223,7 @@ namespace DAL.Migrations
                         column: x => x.CourseId,
                         principalTable: "Course",
                         principalColumn: "id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -243,7 +244,7 @@ namespace DAL.Migrations
                         column: x => x.UserId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -263,7 +264,7 @@ namespace DAL.Migrations
                         column: x => x.UserId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -281,13 +282,13 @@ namespace DAL.Migrations
                         column: x => x.RoleId,
                         principalTable: "AspNetRoles",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_AspNetUserRoles_AspNetUsers_UserId",
                         column: x => x.UserId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -307,7 +308,7 @@ namespace DAL.Migrations
                         column: x => x.UserId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -335,7 +336,29 @@ namespace DAL.Migrations
                         column: x => x.CourseId,
                         principalTable: "Course",
                         principalColumn: "id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Payment",
+                columns: table => new
+                {
+                    ID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    CardNumber = table.Column<string>(type: "nvarchar(16)", maxLength: 16, nullable: false),
+                    ExperationDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    cvc = table.Column<string>(type: "nvarchar(3)", maxLength: 3, nullable: false),
+                    ApplicationStudentIdentity_Id = table.Column<string>(type: "nvarchar(450)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Payment", x => x.ID);
+                    table.ForeignKey(
+                        name: "FK_Payment_AspNetUsers_ApplicationStudentIdentity_Id",
+                        column: x => x.ApplicationStudentIdentity_Id,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -387,7 +410,7 @@ namespace DAL.Migrations
                         column: x => x.CategoryId,
                         principalTable: "Category",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -411,7 +434,7 @@ namespace DAL.Migrations
                         column: x => x.LectureId,
                         principalTable: "lecture",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -552,7 +575,7 @@ namespace DAL.Migrations
                         column: x => x.QuestionGroupId,
                         principalTable: "QuestionGroupes",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -572,7 +595,7 @@ namespace DAL.Migrations
                         column: x => x.QustionId,
                         principalTable: "Questiones",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -592,7 +615,7 @@ namespace DAL.Migrations
                         column: x => x.QustionId,
                         principalTable: "Questiones",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -612,7 +635,7 @@ namespace DAL.Migrations
                         column: x => x.QustionId,
                         principalTable: "Questiones",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateIndex(
@@ -725,6 +748,11 @@ namespace DAL.Migrations
                 column: "CountryID");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Payment_ApplicationStudentIdentity_Id",
+                table: "Payment",
+                column: "ApplicationStudentIdentity_Id");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Questiones_QuestionGroupId",
                 table: "Questiones",
                 column: "QuestionGroupId");
@@ -795,7 +823,7 @@ namespace DAL.Migrations
                 column: "QuestionId",
                 principalTable: "Questiones",
                 principalColumn: "Id",
-                onDelete: ReferentialAction.Cascade);
+                onDelete: ReferentialAction.Restrict);
 
             migrationBuilder.AddForeignKey(
                 name: "FK_QuestionGroupes_lessonContents_LessonContentId",
@@ -803,7 +831,7 @@ namespace DAL.Migrations
                 column: "LessonContentId",
                 principalTable: "lessonContents",
                 principalColumn: "Id",
-                onDelete: ReferentialAction.Cascade);
+                onDelete: ReferentialAction.Restrict);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -866,6 +894,9 @@ namespace DAL.Migrations
 
             migrationBuilder.DropTable(
                 name: "MentorOrInstractorStories");
+
+            migrationBuilder.DropTable(
+                name: "Payment");
 
             migrationBuilder.DropTable(
                 name: "QuestionOptiones");

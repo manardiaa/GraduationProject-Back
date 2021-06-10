@@ -24,8 +24,9 @@ namespace DAL.Models
         [MinLength(3), MaxLength(3)]
         public string cvc { get; set; }
 
-        [ForeignKey("ApplicationStudentIdentity")]
+       
         public string ApplicationStudentIdentity_Id { get; set; }
+        [ForeignKey("ApplicationStudentIdentity_Id")]
         public ApplicationStudentIdentity ApplicationStudentIdentity { get; set; }
     }
 }

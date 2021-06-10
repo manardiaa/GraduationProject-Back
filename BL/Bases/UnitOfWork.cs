@@ -298,25 +298,7 @@ namespace BL.Bases
                 return payment;
             }
         }
-        public OrderDetailsRepository orderDetails;//=> throw new NotImplementedException();
-        public OrderDetailsRepository OrderDetails
-        {
-            get
-            {
-                if (orderDetails == null)
-                    orderDetails = new OrderDetailsRepository(U_DbContext);
-                return orderDetails;
-            }
-        }
-        public OrderRepository order;//=> throw new NotImplementedException();
-        public OrderRepository Order
-        {
-            get
-            {
-                if (order == null)
-                    order = new OrderRepository(U_DbContext);
-                return order;
-            }
-        }
+       
+
     }
 }

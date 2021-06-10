@@ -66,9 +66,9 @@ namespace DAL
         public DbSet<Consultation> Consultations { get; set; }
         public DbSet<StudentStories> studentStories { get; set; }
         public DbSet<StudentReviews> StudentReview { get; set; }
-        public DbSet<MentorOrInstractorStories> MentorOrInstractorStory { get; set; }
         
-
+        public DbSet<MentorOrInstractorStories> MentorOrInstractorStory { get; set; }
+        public DbSet<Payment> Payment { get; set; }
 
     }
 }
