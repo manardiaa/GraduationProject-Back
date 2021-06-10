@@ -20,7 +20,7 @@ namespace BL.Dtos
         [Display(Name = "Net Price")]
         public double CourseNetPrice {​​​​​​​ get; set; }​​​​​​​
       
-    
+        public double totalOrderPrice { get; set; }
         public int CourseID {​​​​​​​ get; set; }​​​​​​​
         public int orderID {​​​​​​​ get; set; }​​​​​​​
 
