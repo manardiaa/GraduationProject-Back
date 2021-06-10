@@ -14,6 +14,7 @@ namespace BL.Dtos
         public int id { get; set; }
         public string Name { get; set; }
         public float Price { get; set; }
+        public float Discount { get; set; }
         public float duration { get; set; }
         public string type { get; set; }
         public string description { get; set; }

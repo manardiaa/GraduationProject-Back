@@ -22,7 +22,7 @@ namespace BL.Dtos
 
         [DataType(DataType.Date)]
         public DateTime ExperationDate { get; set; }
-        public string cardOwnerName { get; set; }
+        
 
 
 

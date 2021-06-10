@@ -32,8 +32,8 @@ namespace Api.Controllers
         [HttpPost]
         public IActionResult Create(PaymentViewModel paymentViewModel)
         {
-            var userID = _httpContextAccessor.HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;
-            paymentViewModel.ApplicationStudentIdentity_Id = userID;
+       //var userID = _httpContextAccessor.HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;
+       //     paymentViewModel.ApplicationStudentIdentity_Id = userID;
             var payments = _paymentAppService.GetAllPayments();
             if (ModelState.IsValid == false)
                 return BadRequest(ModelState);
