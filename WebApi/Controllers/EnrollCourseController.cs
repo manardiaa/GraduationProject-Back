@@ -25,6 +25,14 @@ namespace WebApi.Controllers
         {
             return Ok(_enrollcourseAppService.GetAllEnrollCourses());
         }
+
+        [HttpGet("/AllStdEnrollCourses/{Stid}")]
+        public IActionResult GetAllStdEnrollCourses(string Stid)
+        {
+            return Ok(_enrollcourseAppService.GetAllCrsOfStd(Stid));
+        }
+
+
         [HttpGet("{id}")]
         public IActionResult GetEnrollCourseById(int id)
         {

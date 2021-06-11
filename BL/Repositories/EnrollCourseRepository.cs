@@ -24,6 +24,10 @@ namespace BL.Repositories
         {
             return GetAll().ToList();
         }
+        public List<EnrollCourse> AllCrsOfStd(string stdId)
+        {
+            return GetWhere(crsEnrll => crsEnrll.StudentId == stdId).ToList();
+        }
 
         public bool InsertEnrollCourse(EnrollCourse enrollcourse)
         {
