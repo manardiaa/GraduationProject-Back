@@ -26,6 +26,11 @@ namespace BL.AppServices
 
             return Mapper.Map<List<StudentStoriesViewModel>>(TheUnitOfWork.studentStories.GetAllStudentStories());
         }
+        public List<StudentStoriesViewModel> GetTopStudentStories(int id)
+        {
+
+            return Mapper.Map<List<StudentStoriesViewModel>>(TheUnitOfWork.studentStories.GetTopStdStory(id));
+        }
         public StudentStoriesViewModel GetStudentStories(int id)
         {
             return Mapper.Map<StudentStoriesViewModel>(TheUnitOfWork.studentStories.GetById(id));

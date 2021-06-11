@@ -25,6 +25,13 @@ namespace WebApi.Controllers
         {
             return Ok(studentStoriesAppService.GetAllStudentStories());
         }
+
+        [HttpGet]
+        [Route("StdTopStory/{id}")]
+        public IActionResult GetTopStudentStories(int id)
+        {
+            return Ok(studentStoriesAppService.GetTopStudentStories(id));
+        }
         [HttpGet("{id}")]
         public IActionResult GetStudentStoriesById(int id)
         {

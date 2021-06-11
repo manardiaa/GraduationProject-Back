@@ -25,7 +25,10 @@ namespace BL.Repositories
         {
             return GetAll().ToList();
         }
-
+        public List<StudentStories> GetTopStdStory(int id)
+        {
+            return GetWhere(stdStory => stdStory.ShowOrNot == 1&&stdStory.CategoryId==id).Take(1).ToList();
+        }
         public bool InsertStudentStories(StudentStories studentStories)
         {
             return Insert(studentStories);
