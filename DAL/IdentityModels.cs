@@ -69,6 +69,7 @@ namespace DAL
         
         public DbSet<MentorOrInstractorStories> MentorOrInstractorStory { get; set; }
         public DbSet<Payment> Payment { get; set; }
+        public DbSet<Progress> Progress { get; set; }
 
     }
 }

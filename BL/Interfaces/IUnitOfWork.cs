@@ -34,6 +34,7 @@ namespace BL.Interfaces
         SubCategoryRepository subCategory { get; }
        
         PaymentRepository Payment { get; }
-       
+
+        ProgressRepository Progress { get; }
     }
 }

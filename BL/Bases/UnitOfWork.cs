@@ -298,7 +298,16 @@ namespace BL.Bases
                 return payment;
             }
         }
-       
+        public ProgressRepository progress;
+        public ProgressRepository Progress
+        {
+            get
+            {
+                if (progress == null)
+                    progress = new ProgressRepository(U_DbContext);
+                return progress;
+            }
+        }
 
     }
 }

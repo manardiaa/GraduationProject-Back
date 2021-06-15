@@ -40,7 +40,7 @@ namespace BL.Configurations
             CreateMap<SubCategory, SubCategoryViewModel>().ReverseMap();
 
             CreateMap<Payment, PaymentViewModel>().ReverseMap();
-            
+            CreateMap<Progress, ProgressViewModel>().ReverseMap();
 
 
         }
