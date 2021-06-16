@@ -28,6 +28,12 @@ namespace BL.Repositories
         {
             return GetAll().ToList();
         }
+        public List<lessonContent> GetAllLessonContentByLesson(int LesId)
+        {
+            return GetWhere(Less => Less.LessonId == LesId).ToList();
+
+
+        }
 
         public bool InsertlessonContent(lessonContent lessonContent)
         {
