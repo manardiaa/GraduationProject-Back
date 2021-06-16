@@ -29,6 +29,10 @@ namespace BL.AppServices
         {
             return Mapper.Map<lessonViewModel>(TheUnitOfWork.lesson.GetById(id));
         }
+        public List<lessonViewModel> GetLessonByLecture(int LecId)
+        {
+            return Mapper.Map<List<lessonViewModel>>(TheUnitOfWork.lesson.GetAllLessonByLecture(LecId));
+        }
         public bool SaveNewlesson(lessonViewModel lessonViewModel)
         {
             if (lessonViewModel == null)

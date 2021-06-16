@@ -28,7 +28,12 @@ namespace BL.Repositories
         {
             return GetAll().ToList();
         }
+        public List<lesson> GetAllLessonByLecture(int LecId)
+        {
+            return GetWhere(Less => Less.LectureId == LecId).ToList();
 
+
+        }
         public bool Insertlesson(lesson lesson)
         {
             return Insert(lesson);
