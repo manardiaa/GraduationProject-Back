@@ -34,7 +34,7 @@ namespace WebApi.Controllers
         [Route("LessonContentByLes/{id}")]
         public IActionResult GetLessonContentByLessonId(int id)
         {
-            return Ok(lessonContentAppService.GetLessonContentByLesson(id));
+            return Ok(_lessonContentAppService.GetLessonContentByLesson(id));
         }
 
         [HttpPost]

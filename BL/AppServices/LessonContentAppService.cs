@@ -31,7 +31,7 @@ namespace BL.AppServices
         }
         public List<lessonContentViewModel> GetLessonContentByLesson(int LesId)
         {
-            return Mapper.Map<List<lessonContentViewModel>>(TheUnitOfWork.lessonContent.GetAllLessonContentByLesson(LesId);
+            return Mapper.Map<List<lessonContentViewModel>>(TheUnitOfWork.lessonContent.GetAllLessonContentByLesson(LesId));
         }
         public bool SaveNewlessonContent(lessonContentViewModel lessonContentViewModel)
         {
