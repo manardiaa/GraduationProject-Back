@@ -28,8 +28,20 @@ namespace BL.Repositories
         {
             return GetFirstOrDefault(l => l.Id == id);
         }
-        public List<ApplicationStudentIdentity> GetAllAccounts()
+
+        public async Task<bool> UpdateUserName(string id,string userName)
         {
+            ApplicationStudentIdentity user = GetFirstOrDefault(l => l.Id == id);
+            if (user != null)
+            {
+                user.UserName = userName;     
+                IdentityResult result = await manager.UpdateAsync(user);
+            }
+
+            return true;
+        }
+        public List<ApplicationStudentIdentity> GetAllAccounts()
+        {            
             return GetAll().ToList();
         }
         public async Task<ApplicationStudentIdentity> FindByName(string userName)
@@ -80,12 +92,17 @@ namespace BL.Repositories
             }
             return null;
         }
-        public async Task<bool> updatePassword(ApplicationStudentIdentity user)
+        public async Task<bool> updatePassword(ApplicationStudentIdentity user,string oldPassword,string newPassword)
         {
-            manager.PasswordHasher.HashPassword(user, user.PasswordHash);
-           
-            IdentityResult result = await manager.UpdateAsync(user);
-            return true;
+            var newPasswordHash= manager.PasswordHasher.HashPassword(user,newPassword);
+            IdentityResult result = await manager.ChangePasswordAsync(user,oldPassword, newPasswordHash);
+            if (result != null)
+            {
+                return true;
+
+            }
+            return false;
+
         }
 
         public async Task<bool> UpdateAccount(ApplicationStudentIdentity user)

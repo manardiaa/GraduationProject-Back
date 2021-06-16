@@ -50,6 +50,11 @@ namespace BL.Repositories
         {
             return GetFirstOrDefault(l => l.Id == id);
         }
+
+        public EnrollCourse GetCrsEnroll(int crsid,string stid)
+        {
+            return GetFirstOrDefault(l => l.CourseId == crsid && l.StudentId==stid);
+        }
         #endregion
     }
 }

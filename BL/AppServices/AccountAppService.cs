@@ -61,6 +61,10 @@ namespace BL.AppServices
                 return user;
             return null;
         }
+        public async Task<bool> UpdateUserName(string id, string userName)
+        {
+            return await(TheUnitOfWork.account.UpdateUserName(id, userName));
+        }
         public async Task<ApplicationStudentIdentity> FindByName(string userName)
         {
             ApplicationStudentIdentity user = await TheUnitOfWork.account.FindByName(userName);
@@ -92,17 +96,11 @@ namespace BL.AppServices
             return await TheUnitOfWork.account.AssignToRole(userid, rolename);
         }
         public async Task<bool> UpdatePassword(string userID, string newPassword)
-        {
-            //    ApplicationUserIdentity identityUser = TheUnitOfWork.Account.FindById(user.Id);
-
-            //    Mapper.Map(user, identityUser);
-
-            //    return TheUnitOfWork.Account.UpdateAccount(identityUser);
-
-
+        {          
             ApplicationStudentIdentity identityUser = await TheUnitOfWork.account.FindById(userID);
+            string oldPassword = identityUser.PasswordHash;
             identityUser.PasswordHash = newPassword;
-            return await TheUnitOfWork.account.updatePassword(identityUser);
+            return await TheUnitOfWork.account.updatePassword(identityUser, oldPassword, newPassword);
 
         }
 

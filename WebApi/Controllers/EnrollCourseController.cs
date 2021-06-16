@@ -38,6 +38,11 @@ namespace WebApi.Controllers
         {
             return Ok(_enrollcourseAppService.GetEnrollCourse(id));
         }
+        [HttpGet("EnrollCrs/{crsid}/{stid}")]
+        public IActionResult GetEnrollCourse(int crsid,string stid)
+        {
+            return Ok(_enrollcourseAppService.GetEnrollCourse(stid,crsid));
+        }
 
         [HttpPost]
         public IActionResult Create(EnrollCourseViewModel enrollcourseViewModel)

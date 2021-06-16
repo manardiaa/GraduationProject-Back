@@ -14,7 +14,7 @@ namespace BL.Dtos
         [Display(Name = "User Name")]
         public string UserName { get; set; }
         [MinLength(6)]
-        [DataType(DataType.Password)]
+        //[DataType(DataType.Password)]
         [Required]
         [Display(Name = "Password")]
         public string PasswordHash { get; set; }

@@ -23,17 +23,19 @@ namespace BL.AppServices
 
         public List<EnrollCourseViewModel> GetAllEnrollCourses()
         {
-
             return Mapper.Map<List<EnrollCourseViewModel>>(TheUnitOfWork.enrollCourse.GetAllEnrollCourse());
         }
         public List<EnrollCourseViewModel> GetAllCrsOfStd(string stid)
         {
-
             return Mapper.Map<List<EnrollCourseViewModel>>(TheUnitOfWork.enrollCourse.AllCrsOfStd(stid));
         }
         public EnrollCourseViewModel GetEnrollCourse(int id)
         {
             return Mapper.Map<EnrollCourseViewModel>(TheUnitOfWork.enrollCourse.GetById(id));
+        }
+        public EnrollCourseViewModel GetEnrollCourse(string StId,int crsId)
+        {
+            return Mapper.Map<EnrollCourseViewModel>(TheUnitOfWork.enrollCourse.GetCrsEnroll(crsId,StId));
         }
 
 

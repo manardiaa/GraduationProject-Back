@@ -100,6 +100,19 @@ namespace Api.Controllers
             return Ok(new Response { Status = "Success", Message = "User updated successfully!" });
 
         }
+        [HttpPut("{id}/{NewPassword}")]
+        public async Task<IActionResult> UpdatePassword(string id,string NewPassword)
+        {
+            var user = await _accountAppService.UpdatePassword(id, NewPassword);
+            return Ok(user);
+        }
+
+        [HttpPut("UpdateUserName/{id}/{userName}")]
+        public async Task<IActionResult> UpdateUserName(string id,string userName)
+        {
+            var user = await _accountAppService.UpdateUserName(id, userName);
+            return Ok(user);
+        }
         [HttpPost("/Login")]
         public async Task<IActionResult> Login([FromBody] LoginViewModel model)
         {
@@ -126,6 +139,9 @@ namespace Api.Controllers
                 return BadRequest(ex.Message);
             }
         }
+
+
+
 
         //[HttpGet("count")]
         //public IActionResult UsersCount()
