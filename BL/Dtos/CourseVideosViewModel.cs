@@ -12,6 +12,8 @@ namespace BL.Dtos
       
         public int Id { get; set; }
         public int LessonId { get; set; }  
-        public int CourseId { get; set; }    
+        public int CourseId { get; set; }  
+        public string VideoURL { get; set; }
+
     }
 }
