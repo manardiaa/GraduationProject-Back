@@ -107,10 +107,10 @@ namespace Api.Controllers
             return Ok(user);
         }
 
-        [HttpPut("UpdateUserName/{id}/{userName}")]
-        public async Task<IActionResult> UpdateUserName(string id,string userName)
+        [HttpPut("UpdateUserName/{id}")]
+        public async Task<IActionResult> UpdateUserName(string id,RegisterViewodel registerViewodel)
         {
-            var user = await _accountAppService.UpdateUserName(id, userName);
+            var user = await _accountAppService.UpdateUserName(id, registerViewodel.UserName);
             return Ok(user);
         }
         [HttpPost("/Login")]

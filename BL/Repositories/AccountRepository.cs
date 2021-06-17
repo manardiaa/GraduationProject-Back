@@ -36,9 +36,14 @@ namespace BL.Repositories
             {
                 user.UserName = userName;     
                 IdentityResult result = await manager.UpdateAsync(user);
+                if(result.Succeeded)
+                {
+                    return true;
+                }
+
             }
 
-            return true;
+            return false;
         }
         public List<ApplicationStudentIdentity> GetAllAccounts()
         {            
