@@ -83,12 +83,13 @@ namespace WebApi.Controllers
             }
         }
 
-        [HttpDelete("{id}")]
-        public IActionResult Delete(int id)
+        //[HttpGet("Test/{id}")]
+       [HttpDelete("{id}")]
+        public IActionResult DeleteCrsEnrollment([FromHeader]int ?id)
         {
             try
             {
-                _enrollcourseAppService.DeleteEnrollCourse(id);
+                _enrollcourseAppService.DeleteEnrollCourse(id.Value);
                 return NoContent();
             }
             catch (Exception ex)
