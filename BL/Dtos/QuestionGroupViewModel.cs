@@ -16,8 +16,7 @@ namespace BL.Dtos
         public int QGroupID { get; set; }
         public int LectureId { get; set; }
         public int CourseId { get; set; }
-        public int LessonId   { get; set; }
-        public int LessonContentId { get; set; }
+        public int LessonId   { get; set; }        
        
 
     }

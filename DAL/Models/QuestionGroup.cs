@@ -15,16 +15,13 @@ namespace DAL.Models
         public int LectureId { get; set; }
         public int CourseId { get; set; }
         public int LessonId   { get; set; }
-        public int LessonContentId { get; set; }
+       
         [ForeignKey("LectureId")]
         public virtual lecture Lecture { get; set; }
         [ForeignKey("CourseId")]
         public virtual Course Course { get; set; }
         [ForeignKey("LessonId")]
-        public virtual lesson Lesson { get; set; }
-        [ForeignKey("LessonContentId")]
-        public virtual lessonContent LessonContent { get; set; }
-        public List<Question> Questiones { get; set; } = new List<Question>();
+        public virtual lesson Lesson { get; set; }               
 
     }
 }
