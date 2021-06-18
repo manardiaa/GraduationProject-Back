@@ -30,6 +30,12 @@ namespace WebApi.Controllers
         {
             return Ok(questionAppService.GetQuestions(id));
         }
+        [HttpGet]
+        [Route("QuestionByLessonContent/{id}")]
+        public IActionResult QuestionByLessonContent(int id)
+        {
+            return Ok(questionAppService.GetAllQuestionByLessonContent(id));
+        }
 
         [HttpPost]
         public IActionResult Create(QuestionViewModel questionViewModel)
