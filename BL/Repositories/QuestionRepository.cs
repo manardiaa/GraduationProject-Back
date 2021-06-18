@@ -28,7 +28,7 @@ namespace BL.Repositories
         public List<Question> GetAllQuestionByLessonContent(int LesId)
         {
 
-            lessonContent LC = (lessonContent)GetWhere(ls => ls.Id == LesId);
+            lessonContent LC = (lessonContent)GetWhere(ls => ls.Id== LesId);
 
             return GetWhere(Qes => Qes.QuestionGroupId == LC.QuestionGroupId).ToList();
 

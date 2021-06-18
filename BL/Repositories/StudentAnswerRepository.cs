@@ -20,7 +20,10 @@ namespace BL.Repositories
             this.U_DbContext = U_DbContext;
         }
         #region CRUB
-
+        public List<StudentAnswer> GetStudentAnswersByLessonContentId(int id)
+        {
+            return GetWhere(q => q.lessonContentId == id).ToList();
+        }
         public List<StudentAnswer> GetAllStudentAnswer()
         {
             return GetAll().ToList();
@@ -28,7 +31,30 @@ namespace BL.Repositories
 
         public bool InsertStudentAnswer(StudentAnswer studentAnswer)
         {
-            return Insert(studentAnswer);
+            var qu = (Question)GetWhere(q => q.QuestionId== studentAnswer.QuestionId);
+            if (qu.Type == "TF") {
+                var tf = (TrueAndFalse)GetWhere(q => q.QuestionId == qu.Id);
+                if (studentAnswer.Studentanswer ==tf.right)
+                {
+                    return Insert(studentAnswer);
+                }
+            }
+             else if(qu.Type == "DragAndDrop" ) {
+                var Dp = (DragAndDrop)GetWhere(q => q.QuestionId == qu.Id);
+                if (studentAnswer.Studentanswer == Dp.RightAnswer)
+                {
+                    return Insert(studentAnswer);
+                }
+            }
+            else if (qu.Type == "MCQ")
+            {
+                var QO = (QuestionOptions)GetWhere(q => q.QuestionId == qu.Id);
+                if (studentAnswer.Studentanswer == QO.right)
+                {
+                    return Insert(studentAnswer);
+                }
+            }
+            return false;
         }
         public void UpdateStudentAnswer(StudentAnswer studentAnswer)
         {
