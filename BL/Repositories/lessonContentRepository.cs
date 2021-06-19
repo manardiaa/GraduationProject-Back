@@ -22,6 +22,9 @@ namespace BL.Repositories
         {
             this.U_DbContext = U_DbContext;
         }
+
+        
+
         #region CRUB
 
         public List<lessonContent> GetAlllessonContent()
@@ -34,6 +37,7 @@ namespace BL.Repositories
 
 
         }
+        
 
         public bool InsertlessonContent(lessonContent lessonContent)
         {
