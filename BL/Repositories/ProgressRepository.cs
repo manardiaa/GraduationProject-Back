@@ -26,15 +26,6 @@ namespace BL.Repositories
             return GetAll().ToList();
         }
 
-        //public int GetNumberOfLesson(int courseid)
-        //{
-        //    //Course c = GetFirstOrDefault(c => c.Course.id == courseid);
-            
-        //    Course c= (Course)GetWhere(course=> course.CourseId == courseid);
-        //    Progress p = GetWhere(crs => crs.CourseId == c.id).FirstOrDefault();
-        //    p.NumOfLesson = c.LectureNumber;
-        //    return p.NumOfLesson;
-        //}
         public bool InsertProgress(Progress Progress)
         {
             return Insert(Progress);
@@ -56,6 +47,14 @@ namespace BL.Repositories
         {
             return GetFirstOrDefault(l => l.Id == id);
         }
+        public Progress GetProgressByCrsIDAndStID(int crsid,string stId)
+        {
+            return GetFirstOrDefault(l => l.CourseId == crsid && l.StudentId==stId);
+        }
+
+       
+
+
         #endregion
     }
 }

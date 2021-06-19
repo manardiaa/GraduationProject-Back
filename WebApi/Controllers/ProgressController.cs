@@ -25,8 +25,11 @@ namespace WebApi.Controllers
         {
             return Ok(_ProgressAppService.GetAllProgress());
         }
-
-
+        [HttpGet("progress/{stId}/{crsid}")]
+        public IActionResult Progress(int crsid, string stId)
+        {
+            return Ok(_ProgressAppService.ProgressByCrsIDAndStID(crsid,stId));
+        }
 
 
         [HttpGet("{id}")]

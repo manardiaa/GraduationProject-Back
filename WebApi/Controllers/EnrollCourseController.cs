@@ -85,11 +85,11 @@ namespace WebApi.Controllers
 
         //[HttpGet("Test/{id}")]
        [HttpDelete("{id}")]
-        public IActionResult DeleteCrsEnrollment([FromHeader]int ?id)
+        public IActionResult DeleteCrsEnrollment(int id)
         {
             try
             {
-                _enrollcourseAppService.DeleteEnrollCourse(id.Value);
+                _enrollcourseAppService.DeleteEnrollCourse(id);
                 return NoContent();
             }
             catch (Exception ex)
