@@ -61,10 +61,10 @@ namespace BL.AppServices
                 return user;
             return null;
         }
-        public async Task<bool> UpdateUserName(string id, string userName)
+        public async Task<bool> UpdateUserInfo(string id, RegisterViewodel accountInfo)
         {
-            return await(TheUnitOfWork.account.UpdateUserName(id, userName));
-        }
+            return await(TheUnitOfWork.account.UpdateUserInfo(id, accountInfo));
+        }        
         public async Task<ApplicationStudentIdentity> FindByName(string userName)
         {
             ApplicationStudentIdentity user = await TheUnitOfWork.account.FindByName(userName);
@@ -95,12 +95,9 @@ namespace BL.AppServices
                 return null;
             return await TheUnitOfWork.account.AssignToRole(userid, rolename);
         }
-        public async Task<bool> UpdatePassword(string userID, string newPassword)
-        {          
-            ApplicationStudentIdentity identityUser = await TheUnitOfWork.account.FindById(userID);
-            string oldPassword = identityUser.PasswordHash;
-            identityUser.PasswordHash = newPassword;
-            return await TheUnitOfWork.account.updatePassword(identityUser, oldPassword, newPassword);
+        public async Task<bool> UpdatePassword(string userID, RegisterViewodel accountInfo, string oldPassword)
+        {                 
+            return await TheUnitOfWork.account.updatePassword(userID, accountInfo,oldPassword);
 
         }
 

@@ -1,4 +1,5 @@
 ﻿using BL.Bases;
+using BL.Dtos;
 using BL.StaticClasses;
 using DAL;
 using Microsoft.AspNetCore.Http;
@@ -29,22 +30,26 @@ namespace BL.Repositories
             return GetFirstOrDefault(l => l.Id == id);
         }
 
-        public async Task<bool> UpdateUserName(string id,string userName)
+        public async Task<bool> UpdateUserInfo(string id,RegisterViewodel accountInfo)
         {
             ApplicationStudentIdentity user = GetFirstOrDefault(l => l.Id == id);
             if (user != null)
             {
-                user.UserName = userName;     
+                user.UserName = accountInfo.UserName;     
+                user.Email = accountInfo.Email;     
+                user.PhoneNumber = accountInfo.PhoneNumber;     
+
                 IdentityResult result = await manager.UpdateAsync(user);
                 if(result.Succeeded)
                 {
                     return true;
                 }
-
             }
 
             return false;
         }
+
+        
         public List<ApplicationStudentIdentity> GetAllAccounts()
         {            
             return GetAll().ToList();
@@ -97,15 +102,22 @@ namespace BL.Repositories
             }
             return null;
         }
-        public async Task<bool> updatePassword(ApplicationStudentIdentity user,string oldPassword,string newPassword)
+        public async Task<bool> updatePassword(string stid, RegisterViewodel accountInfo,string oldPassword)
         {
-            var newPasswordHash= manager.PasswordHasher.HashPassword(user,newPassword);
-            IdentityResult result = await manager.ChangePasswordAsync(user,oldPassword, newPasswordHash);
-            if (result != null)
+            ApplicationStudentIdentity user = GetFirstOrDefault(l => l.Id == stid);
+            var newPasswordHash = manager.PasswordHasher.HashPassword(user, accountInfo.PasswordHash);
+            //var oldPasswordHash = manager.PasswordHasher.HashPassword(user, oldPassword);
+            
+            if (await manager.CheckPasswordAsync(user, oldPassword))
             {
-                return true;
-
+                user.PasswordHash = newPasswordHash;
+                IdentityResult result = await manager.UpdateAsync(user);
+                if (result != null && result.Succeeded)
+                {
+                    return true;
+                }
             }
+           
             return false;
 
         }

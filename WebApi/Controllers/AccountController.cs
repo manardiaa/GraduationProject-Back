@@ -1,19 +1,14 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using BL.AppServices;
 using BL.Dtos;
 using Api.HelpClasses;
 using System.Security.Claims;
-using System.IdentityModel.Tokens.Jwt;
-using Microsoft.IdentityModel.Tokens;
-using System.Text;
 using DAL;
 using BL.StaticClasses;
-using Microsoft.AspNetCore.Authorization;
 
 namespace Api.Controllers
 {
@@ -100,19 +95,21 @@ namespace Api.Controllers
             return Ok(new Response { Status = "Success", Message = "User updated successfully!" });
 
         }
-        [HttpPut("{id}/{NewPassword}")]
-        public async Task<IActionResult> UpdatePassword(string id,string NewPassword)
+        [HttpPut("updatePassword/{id}/{oldPassword}")]
+        public async Task<IActionResult> UpdatePassword(string id,RegisterViewodel accountInfo,string oldPassword)
         {
-            var user = await _accountAppService.UpdatePassword(id, NewPassword);
+            var user = await _accountAppService.UpdatePassword(id, accountInfo , oldPassword);
             return Ok(user);
         }
 
-        [HttpPut("UpdateUserName/{id}")]
-        public async Task<IActionResult> UpdateUserName(string id,RegisterViewodel registerViewodel)
+        [HttpPut("UpdateUserInfo/{id}")]
+        public async Task<IActionResult> UpdateUserInfo(string id,RegisterViewodel accountInfo)
         {
-            var user = await _accountAppService.UpdateUserName(id, registerViewodel.UserName);
+            var user = await _accountAppService.UpdateUserInfo(id, accountInfo);
             return Ok(user);
         }
+
+        
         [HttpPost("/Login")]
         public async Task<IActionResult> Login([FromBody] LoginViewModel model)
         {

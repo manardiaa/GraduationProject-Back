@@ -33,6 +33,10 @@ namespace BL.AppServices
         {
             return Mapper.Map<ProgressViewModel>(TheUnitOfWork.Progress.GetById(id));
         }
+        public ProgressViewModel ProgressByCrsIDAndStID(int crsid, string stId)
+        {
+            return Mapper.Map<ProgressViewModel>(TheUnitOfWork.Progress.GetProgressByCrsIDAndStID(crsid,stId));
+        }
 
 
 
