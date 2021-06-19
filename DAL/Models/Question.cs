@@ -12,6 +12,9 @@ namespace DAL.Models
         public int Id { get; set; }
         public string Title { get; set; }     
         public string Type { get; set; }
+        public int LessonContentId { get; set; }
+        [ForeignKey("LessonContentId")]
+        public virtual lessonContent LessonContent { get; set; }
         public int QuestionGroupId { get; set; }
         [ForeignKey("QuestionGroupId")]
         public virtual QuestionGroup QustionGroup { get; set; }
