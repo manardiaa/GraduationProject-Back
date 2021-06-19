@@ -20,6 +20,14 @@ namespace WebApi.Controllers
             this._lessonContentAppService = lessonContentAppService;
         }
 
+
+        [HttpGet("CrsLessonContentCount/{crsId}")]
+        public IActionResult lessonContentCount(int crsId)
+        {
+            return Ok(_lessonContentAppService.lessonContentCount(crsId));
+        }
+
+
         [HttpGet]
         public IActionResult GetAllLessonContent()
         {

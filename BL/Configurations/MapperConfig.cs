@@ -41,6 +41,8 @@ namespace BL.Configurations
 
             CreateMap<Payment, PaymentViewModel>().ReverseMap();
             CreateMap<Progress, ProgressViewModel>().ReverseMap();
+            CreateMap<Watched, WatchedViewModel>().ReverseMap();
+
 
 
         }

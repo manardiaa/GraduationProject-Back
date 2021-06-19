@@ -11,35 +11,37 @@ namespace WebApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ProgressController : ControllerBase
+    public class WatchedController : ControllerBase
     {
-        ProgressAppService _ProgressAppService;
+        WatchedAppService watchedAppService;
 
-        public ProgressController(ProgressAppService ProgressAppService)
+        public WatchedController(WatchedAppService watchedAppService)
         {
-            this._ProgressAppService = ProgressAppService;
+            this.watchedAppService = watchedAppService;
         }
 
         [HttpGet]
-        public IActionResult GetAllProgress()
+        public IActionResult GetAllWatched()
         {
-            return Ok(_ProgressAppService.GetAllProgress());
+            return Ok(watchedAppService.GetAllWatched());
         }
-        [HttpGet("progress/{stId}/{crsid}")]
-        public IActionResult Progress(int crsid, string stId)
-        {
-            return Ok(_ProgressAppService.ProgressByCrsIDAndStID(crsid,stId));
-        }
+
 
 
         [HttpGet("{id}")]
-        public IActionResult GetProgressById(int id)
+        public IActionResult GetWatchedById(int id)
         {
-            return Ok(_ProgressAppService.GetProgress(id));
+            return Ok(watchedAppService.GetWatched(id));
+        }
+        [HttpGet("/CheckIfExist/{stId}/{crsID}/{lessonContentID}")]
+        public bool CheckWatchedExistsByData(string stId,int crsID,int lessonContentID)
+        {
+            WatchedViewModel watch = watchedAppService.GetWatchedObj(stId, crsID, lessonContentID);
+            return watchedAppService.CheckWatchedExistsByData(watch);
         }
 
         [HttpPost]
-        public IActionResult Create(ProgressViewModel ProgressViewModel)
+        public IActionResult Create(WatchedViewModel watchedViewModel)
         {
 
             if (ModelState.IsValid == false)
@@ -48,17 +50,15 @@ namespace WebApi.Controllers
             }
             try
             {
-                if(!_ProgressAppService.CheckInsertProgressExists(ProgressViewModel)&& ProgressViewModel.NumOfLesson>0)
+                if (!watchedAppService.CheckWatchedExistsByData(watchedViewModel))
                 {
-                    _ProgressAppService.SaveNewProgress(ProgressViewModel);
-                    return Created("CreateProgress", ProgressViewModel);
+                    watchedAppService.SaveNewWatched(watchedViewModel);
+                    return Created("CreateWatched", watchedViewModel);
                 }
                 else
                 {
                     return BadRequest();
-
                 }
-
             }
             catch (Exception ex)
             {
@@ -68,7 +68,7 @@ namespace WebApi.Controllers
         }
 
         [HttpPut("{id}")]
-        public IActionResult Edit(int id, ProgressViewModel ProgressViewModel)
+        public IActionResult Edit(int id, WatchedViewModel watchedViewModel)
         {
 
             if (ModelState.IsValid == false)
@@ -77,8 +77,8 @@ namespace WebApi.Controllers
             }
             try
             {
-                _ProgressAppService.UpdateProgress(ProgressViewModel);
-                return Ok(ProgressViewModel);
+                watchedAppService.UpdateWatched(watchedViewModel);
+                return Ok(watchedViewModel);
             }
             catch (Exception ex)
             {
@@ -91,7 +91,7 @@ namespace WebApi.Controllers
         {
             try
             {
-                _ProgressAppService.DeleteProgress(id);
+                watchedAppService.DeleteWatched(id);
                 return NoContent();
             }
             catch (Exception ex)
@@ -99,6 +99,6 @@ namespace WebApi.Controllers
                 return BadRequest(ex.Message);
             }
         }
+
     }
 }
-

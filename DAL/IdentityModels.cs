@@ -70,6 +70,7 @@ namespace DAL
         public DbSet<MentorOrInstractorStories> MentorOrInstractorStory { get; set; }
         public DbSet<Payment> Payment { get; set; }
         public DbSet<Progress> Progress { get; set; }
+        public DbSet<Watched> watched { get; set; }
 
     }
 }

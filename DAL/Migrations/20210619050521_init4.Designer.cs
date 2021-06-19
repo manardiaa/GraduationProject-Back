@@ -4,14 +4,16 @@ using DAL;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace DAL.Migrations
 {
     [DbContext(typeof(ApplicationDBContext))]
-    partial class ApplicationDBContextModelSnapshot : ModelSnapshot
+    [Migration("20210619050521_init4")]
+    partial class init4
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -588,36 +590,6 @@ namespace DAL.Migrations
                     b.ToTable("TrueAndFalses");
                 });
 
-            modelBuilder.Entity("DAL.Models.Watched", b =>
-                {
-                    b.Property<int>("id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("CrsID")
-                        .HasColumnType("int");
-
-                    b.Property<int>("lessonContentID")
-                        .HasColumnType("int");
-
-                    b.Property<string>("stID")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<int>("whatchedOrNot")
-                        .HasColumnType("int");
-
-                    b.HasKey("id");
-
-                    b.HasIndex("CrsID");
-
-                    b.HasIndex("lessonContentID");
-
-                    b.HasIndex("stID");
-
-                    b.ToTable("watched");
-                });
-
             modelBuilder.Entity("DAL.Models.lecture", b =>
                 {
                     b.Property<int>("Id")
@@ -689,9 +661,6 @@ namespace DAL.Migrations
                     b.Property<string>("Header")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("LectureID")
-                        .HasColumnType("int");
-
                     b.Property<int>("LessonId")
                         .HasColumnType("int");
 
@@ -711,8 +680,6 @@ namespace DAL.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("LectureID");
 
                     b.HasIndex("LessonId");
 
@@ -1088,31 +1055,6 @@ namespace DAL.Migrations
                     b.Navigation("Qustion");
                 });
 
-            modelBuilder.Entity("DAL.Models.Watched", b =>
-                {
-                    b.HasOne("DAL.Models.Course", "Course")
-                        .WithMany()
-                        .HasForeignKey("CrsID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("DAL.Models.lessonContent", "LessonContent")
-                        .WithMany()
-                        .HasForeignKey("lessonContentID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("DAL.ApplicationStudentIdentity", "StudentIdentity")
-                        .WithMany()
-                        .HasForeignKey("stID");
-
-                    b.Navigation("Course");
-
-                    b.Navigation("LessonContent");
-
-                    b.Navigation("StudentIdentity");
-                });
-
             modelBuilder.Entity("DAL.Models.lecture", b =>
                 {
                     b.HasOne("DAL.Models.Course", "Course")
@@ -1137,12 +1079,6 @@ namespace DAL.Migrations
 
             modelBuilder.Entity("DAL.Models.lessonContent", b =>
                 {
-                    b.HasOne("DAL.Models.lecture", "Lecture")
-                        .WithMany()
-                        .HasForeignKey("LectureID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("DAL.Models.lesson", "Lesson")
                         .WithMany("lessonesContent")
                         .HasForeignKey("LessonId")
@@ -1168,8 +1104,6 @@ namespace DAL.Migrations
                         .IsRequired();
 
                     b.Navigation("Course");
-
-                    b.Navigation("Lecture");
 
                     b.Navigation("Lesson");
 

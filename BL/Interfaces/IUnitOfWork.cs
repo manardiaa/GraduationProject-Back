@@ -31,10 +31,10 @@ namespace BL.Interfaces
         MentorOrInstractorStoriesRepository mentorOrInstractor { get; }
         StudentReviewsRepository studentReviews { get; }
         StudentStoriesRepository studentStories { get; }
-        SubCategoryRepository subCategory { get; }
-       
+        SubCategoryRepository subCategory { get; }       
         PaymentRepository Payment { get; }
-
         ProgressRepository Progress { get; }
+        WatchedRepository Watched { get; }
+
     }
 }

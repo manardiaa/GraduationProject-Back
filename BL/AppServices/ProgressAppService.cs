@@ -80,6 +80,11 @@ namespace BL.AppServices
         {
             Progress Progress = Mapper.Map<Progress>(ProgressViewModel);
             return TheUnitOfWork.Progress.CheckProgressExists(Progress);
+        } 
+        public bool CheckInsertProgressExists(ProgressViewModel ProgressViewModel)
+        {
+            Progress Progress = Mapper.Map<Progress>(ProgressViewModel);
+            return TheUnitOfWork.Progress.CheckInsertProgressExists(Progress);
         }
         #endregion
 

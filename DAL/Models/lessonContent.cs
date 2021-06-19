@@ -19,10 +19,21 @@ namespace DAL.Models
         public string Type { get; set; }
         public string Header { get; set; }
         public string Title { get; set; }
+        public int crsID { get; set; }
+        public int LectureID { get; set; }
+
         [ForeignKey("QuestionGroupId")]
         public virtual QuestionGroup QustionGroup { get; set; }
+
+        [ForeignKey("crsID")]
+        public virtual Course Course { get; set; }
+
+        [ForeignKey("LectureID")]
+        public virtual lecture Lecture { get; set; }
+
         [ForeignKey("VideoLinkId")]
         public virtual CourseVideos VideoLink { get; set; }
+
         [ForeignKey("LessonId")]
         public virtual lesson Lesson { get; set; }
 

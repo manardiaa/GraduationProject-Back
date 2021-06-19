@@ -298,6 +298,16 @@ namespace BL.Bases
                 return payment;
             }
         }
+        public WatchedRepository watched;//=> throw new NotImplementedException();
+        public WatchedRepository Watched
+        {
+            get
+            {
+                if (watched == null)
+                    watched = new WatchedRepository(U_DbContext);
+                return watched;
+            }
+        }
         public ProgressRepository progress;
         public ProgressRepository Progress
         {

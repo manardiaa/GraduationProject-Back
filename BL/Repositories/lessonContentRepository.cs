@@ -56,6 +56,11 @@ namespace BL.Repositories
         {
             return GetFirstOrDefault(l => l.Id == id);
         }
+
+        public int lessonContentCount(int crsId)
+        {
+            return GetWhere(l => l.crsID == crsId).ToList().Count();
+        }
         #endregion
     }
 }

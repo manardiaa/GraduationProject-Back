@@ -43,6 +43,10 @@ namespace BL.Repositories
         {
             return GetAny(l => l.Id == Progress.Id);
         }
+        public bool CheckInsertProgressExists(Progress Progress)
+        {
+            return GetAny(l => l.CourseId == Progress.CourseId&& l.StudentId==Progress.StudentId);
+        }
         public Progress GetOProgressById(int id)
         {
             return GetFirstOrDefault(l => l.Id == id);

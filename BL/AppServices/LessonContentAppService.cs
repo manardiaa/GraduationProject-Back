@@ -22,9 +22,13 @@ namespace BL.AppServices
 
         public List<lessonContentViewModel> AllLessonContent()
         {
-
             return Mapper.Map<List<lessonContentViewModel>>(TheUnitOfWork.lessonContent.GetAlllessonContent());
-        }
+        }   
+        public int lessonContentCount(int crsId)
+        {
+            return TheUnitOfWork.lessonContent.lessonContentCount(crsId);
+        }        
+
         public lessonContentViewModel GetlessonContent(int id)
         {
             return Mapper.Map<lessonContentViewModel>(TheUnitOfWork.lessonContent.GetById(id));
