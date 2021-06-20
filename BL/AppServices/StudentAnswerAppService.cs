@@ -25,10 +25,10 @@ namespace BL.AppServices
 
             return Mapper.Map<List<StudentAnswerViewModel>>(TheUnitOfWork.studentAnswer.GetAllStudentAnswer());
         }
-        public List<StudentAnswerViewModel> GetStudentAnswersByLessonContentId(int id)
+        public List<StudentAnswerViewModel> GetStudentAnswersByLessonContentId(int id,string stId)
         {
 
-            return Mapper.Map<List<StudentAnswerViewModel>>(TheUnitOfWork.studentAnswer.GetStudentAnswersByLessonContentId(id));
+            return Mapper.Map<List<StudentAnswerViewModel>>(TheUnitOfWork.studentAnswer.GetStudentAnswersByLessonContentId(id,stId));
         }
         public StudentAnswerViewModel GetStudentAnswer(int id)
         {

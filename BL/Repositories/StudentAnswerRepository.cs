@@ -20,9 +20,9 @@ namespace BL.Repositories
             this.U_DbContext = U_DbContext;
         }
         #region CRUB
-        public List<StudentAnswer> GetStudentAnswersByLessonContentId(int id)
+        public List<StudentAnswer> GetStudentAnswersByLessonContentId(int id,string stId)
         {
-            return GetWhere(q => q.lessonContentId == id).ToList();
+            return GetWhere(q => q.lessonContentId == id && q.StudentId==stId).ToList();
         }
         public List<StudentAnswer> GetAllStudentAnswer()
         {

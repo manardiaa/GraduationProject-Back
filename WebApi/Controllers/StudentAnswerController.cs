@@ -26,10 +26,10 @@ namespace WebApi.Controllers
             return Ok(studentAnswerAppService.AllStudentAnswer());
         }
         [HttpGet]
-        [Route("GetAllStudentAnswersByLessonContent/{id}")]
-        public IActionResult GetAllStudentAnswersByLessonContent(int id)
+        [Route("GetAllStudentAnswersByLessonContent/{id}/{stId}")]
+        public IActionResult GetAllStudentAnswersByLessonContent(int id,string stId)
         {
-            return Ok(studentAnswerAppService.GetStudentAnswersByLessonContentId(id));
+            return Ok(studentAnswerAppService.GetStudentAnswersByLessonContentId(id,stId));
         }
         [HttpGet("{id}")]
         public IActionResult GetStudentAnswersById(int id)
