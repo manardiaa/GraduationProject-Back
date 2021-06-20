@@ -16,8 +16,13 @@ namespace DAL.Models
         public int ContentNumber { get; set; }
         public float Duration { get; set; }
         public int LectureId { get; set; }
+        public int CrsId { get; set; }
+
         [ForeignKey("LectureId")]
         public virtual lecture Lecture { get; set; }
+
+        [ForeignKey("CrsId")]
+        public virtual Course Course { get; set; }
         public List<lessonContent> lessonesContent { get; set; } = new List<lessonContent>();
 
     }
