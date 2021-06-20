@@ -20,7 +20,9 @@ namespace BL.Dtos
         public string Type { get; set; }
         public string Header { get; set; }
         public string Title { get; set; }
-       
+        public int crsID { get; set; }
+        public int LectureID { get; set; }
+
 
     }
 }

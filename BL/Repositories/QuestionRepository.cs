@@ -27,15 +27,8 @@ namespace BL.Repositories
         }
         public List<Question> GetAllQuestionByLessonContent(int LesId)
         {
-
-          
-
-           
         return GetWhere(Qes => Qes.LessonContentId == LesId).ToList();
-            
-
-
-        }
+         }
 
         public bool InsertQuestion(Question question)
         {
