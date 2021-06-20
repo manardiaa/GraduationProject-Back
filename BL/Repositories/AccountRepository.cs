@@ -37,7 +37,8 @@ namespace BL.Repositories
             {
                 user.UserName = accountInfo.UserName;     
                 user.Email = accountInfo.Email;     
-                user.PhoneNumber = accountInfo.PhoneNumber;     
+                user.PhoneNumber = accountInfo.PhoneNumber;
+                user.Image = accountInfo.Image;
 
                 IdentityResult result = await manager.UpdateAsync(user);
                 if(result.Succeeded)
