@@ -37,6 +37,12 @@ namespace WebApi.Controllers
         {
             return Ok(lessonAppService.GetLessonByLecture(id));
         }
+        [HttpGet]
+        [Route("LessonByCrsID/{id}")]
+        public IActionResult GetLessonByCrsId(int id)
+        {
+            return Ok(lessonAppService.GetAllLessonByCrsID(id));
+        }
         [HttpPost]
         public IActionResult Create(lessonViewModel lessonViewModel)
         {

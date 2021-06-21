@@ -26,6 +26,11 @@ namespace BL.Repositories
             return GetAll().ToList();
         }
 
+        public List<QuestionOptions> GetQuestionOptByQuestionID(int QID)
+        {
+            return GetWhere(l => l.QustionId == QID).ToList();
+        }
+
         public bool InsertQuestionOptions(QuestionOptions questionOptions)
         {
             return Insert(questionOptions);

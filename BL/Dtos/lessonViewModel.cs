@@ -16,6 +16,8 @@ namespace BL.Dtos
         public int ContentNumber { get; set; }
         public float Duration { get; set; }
         public int LectureId { get; set; }
-        
+        public int CrsId { get; set; }
+
+
     }
 }

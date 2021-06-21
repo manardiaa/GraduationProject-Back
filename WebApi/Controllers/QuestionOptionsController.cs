@@ -27,6 +27,15 @@ namespace WebApi.Controllers
         {
             return Ok(questionOptionsAppService.AllQuestionOptions());
         }
+
+
+        [HttpGet("GetQuestionOptByQuestionID/{QID}")]
+        public IActionResult GetQuestionOptByQuestionID(int QID)
+        {
+            return Ok(questionOptionsAppService.GetQuestionOptByQuestionID(QID));
+        }
+
+
         [HttpGet("{id}")]
         public IActionResult GetQuestionOptionsById(int id)
         {
