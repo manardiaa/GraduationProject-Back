@@ -26,5 +26,7 @@ namespace BL.Dtos
         [MinLength(3)]
         public string ? Country { get; set; }
         public string ? RoleName { get; set; }
+        public string? Image { get; set; }
+
     }
 }
