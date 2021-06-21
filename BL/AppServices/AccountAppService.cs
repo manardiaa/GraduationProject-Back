@@ -168,7 +168,6 @@ namespace BL.AppServices
             {
                 Id = null,
                 Email = "test@gmail.com",
-
                 UserName = "Admin",
                 PasswordHash = "@Admin12345",
 
