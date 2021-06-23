@@ -25,6 +25,12 @@ namespace WebApi.Controllers
         {
             return Ok(_courseVideosAppService.GetAllCoursesVideos());
         }
+        [HttpGet("CourseVideosByLessonId/{lessonID}")]
+        public IActionResult GetAllCourseVideosByLessonId(int lessonID)
+        {
+            return Ok(_courseVideosAppService.GetAllCourseVideosByLessonId(lessonID));
+        }
+
         [HttpGet("{id}")]
         public IActionResult GetCourseVideosById(int id)
         {

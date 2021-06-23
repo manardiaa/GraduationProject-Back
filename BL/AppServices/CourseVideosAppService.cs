@@ -26,6 +26,13 @@ namespace BL.AppServices
 
             return Mapper.Map<List<CourseVideosViewModel>>(TheUnitOfWork.courseVideos.GetAllCourseVideos());
         }
+
+        public List<CourseVideosViewModel> GetAllCourseVideosByLessonId(int lessonId)
+        {
+
+            return Mapper.Map<List<CourseVideosViewModel>>(TheUnitOfWork.courseVideos.GetAllCourseVideosByLessonId(lessonId));
+        }
+        
         public CourseVideosViewModel GetCourseVideos(int id)
         {
             return Mapper.Map<CourseVideosViewModel>(TheUnitOfWork.courseVideos.GetById(id));

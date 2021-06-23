@@ -24,7 +24,10 @@ namespace BL.Repositories
         {
             return GetAll().ToList();
         }
-
+        public List<CourseVideos> GetAllCourseVideosByLessonId(int lessonId)
+        {
+            return GetWhere(l=>l.LessonId==lessonId).ToList();
+        }
         public bool InsertCourseVideos(CourseVideos courseVideos)
         {
             return Insert(courseVideos);

@@ -64,7 +64,8 @@ namespace BL.Repositories
 
         public List<MentorOrInstractorStories> AllMentors()
         {
-            return GetWhere(Inst => Inst.MemberType == "Mentor" ).ToList();
+            List<MentorOrInstractorStories> MentorList= GetWhere(Inst => Inst.MemberType == "Mentor" ).ToList();
+            return MentorList;
         }
         #endregion
     }

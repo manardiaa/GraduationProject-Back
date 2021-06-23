@@ -229,6 +229,9 @@ namespace DAL.Migrations
                     b.Property<int>("LessonId")
                         .HasColumnType("int");
 
+                    b.Property<string>("VideoName")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("VideoURL")
                         .HasColumnType("nvarchar(max)");
 
