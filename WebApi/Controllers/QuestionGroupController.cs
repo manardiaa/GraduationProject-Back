@@ -26,6 +26,13 @@ namespace WebApi.Controllers
         {
             return Ok(questionGroupAppService.AllQuestionsGroup());
         }
+
+        [HttpGet("QuestionGroupsByIds/{crsId}/{lectID}/{lessonID}")]
+        public IActionResult GetQuestionGroupsByIds(int crsId, int lectID, int lessonID)
+        {
+            return Ok(questionGroupAppService.GetQuestionGroupsByIds(crsId,lectID,lessonID));
+        }
+        
         [HttpGet("{id}")]
         public IActionResult GetQuestionGroupById(int id)
         {
