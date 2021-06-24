@@ -25,6 +25,11 @@ namespace WebApi.Controllers
         {
             return Ok(questionAppService.AllQuestions());
         }
+        [HttpGet("QstTypeList/{type}")]
+        public IActionResult GetAllQuestionType(string type)
+        {
+            return Ok(questionAppService.GetAllQuestionByType(type));
+        }
         [HttpGet("{id}")]
         public IActionResult GetQuestionById(int id)
         {

@@ -24,6 +24,10 @@ namespace BL.Repositories
         public List<Question> GetAllQuestion()
         {
             return GetAll().ToList();
+        } 
+        public List<Question> GetAllQuestionByType(string type)
+        {
+            return GetWhere(l=>l.Type==type).ToList();
         }
         public List<Question> GetAllQuestionByLessonContent(int LesId)
         {
