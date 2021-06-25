@@ -11,6 +11,8 @@ namespace BL.Dtos
         public int ID { get; set; }
         public string SubCategoryTitle { get; set; } = "Test";
         public int CategoryID { get; set; } = 1;
+        public string SubCategoryDescribtion { get; set; }
+
     }
 
 }
