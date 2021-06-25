@@ -14,6 +14,7 @@ namespace BL.Dtos
         public string Studentanswer { get; set; }
         public int QuestionId { get; set; }     
         public string StudentId { get; set; }
+        public int lessonContentId { get; set; }
 
 
 
