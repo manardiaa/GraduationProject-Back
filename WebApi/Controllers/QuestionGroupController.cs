@@ -32,6 +32,16 @@ namespace WebApi.Controllers
         {
             return Ok(questionGroupAppService.GetQuestionGroupsByIds(crsId,lectID,lessonID));
         }
+        [HttpGet("QuestionGroupsBylessonIds/{lessonID}")]
+        public IActionResult GetAllQuestionGroupBylessontId(int lessonID)
+        {
+            return Ok(questionGroupAppService.GetAllQuestionGroupBylessontId(lessonID));
+        }
+        [HttpGet("QuestionGroupByCrsID/{CrsID}")]
+        public IActionResult GetAllQuestionGroupByCrsID(int CrsID)
+        {
+            return Ok(questionGroupAppService.GetAllQuestionGroupByCrsID(CrsID));
+        }
         
         [HttpGet("{id}")]
         public IActionResult GetQuestionGroupById(int id)

@@ -28,6 +28,16 @@ namespace BL.Repositories
             return GetAll().ToList();
         }
 
+        public List<QuestionGroup> GetAllQuestionGroupBylessontId(int lessonId)
+        {
+            return GetWhere(l => l.LessonId == lessonId).ToList();
+        }
+
+        public List<QuestionGroup> GetAllQuestionGroupByCrsID(int CrsID)
+        {
+            return GetWhere(l => l.CourseId == CrsID).ToList();
+        }
+
         public List<QuestionGroup> GetQuestionGroupsByIds(int crsId,int lectID,int lessonID)
         {
             return GetWhere(l => l.CourseId == crsId && l.LectureId == lectID && l.LessonId == lessonID).ToList();

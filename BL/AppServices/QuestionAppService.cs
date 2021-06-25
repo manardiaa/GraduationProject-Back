@@ -24,6 +24,10 @@ namespace BL.AppServices
         {
             return Mapper.Map<List<QuestionViewModel>>(TheUnitOfWork.question.GetAllQuestion());
         }
+        public List<QuestionViewModel> GetAllQuestionbyIds(int lessonContentId, int questionGroupId)
+        {
+            return Mapper.Map<List<QuestionViewModel>>(TheUnitOfWork.question.GetAllQuestionbyIds(lessonContentId,questionGroupId));
+        }
 
         public List<QuestionViewModel> GetAllQuestionByType(string type)
         {

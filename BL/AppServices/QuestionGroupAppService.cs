@@ -22,8 +22,15 @@ namespace BL.AppServices
 
         public List<QuestionGroupViewModel> AllQuestionsGroup()
         {
-
             return Mapper.Map<List<QuestionGroupViewModel>>(TheUnitOfWork.questionGroup.GetAllQuestionGroup());
+        }
+        public List<QuestionGroupViewModel> GetAllQuestionGroupBylessontId(int lessonId)
+        {
+            return Mapper.Map<List<QuestionGroupViewModel>>(TheUnitOfWork.questionGroup.GetAllQuestionGroupBylessontId(lessonId));
+        }
+        public List<QuestionGroupViewModel> GetAllQuestionGroupByCrsID(int CrsID)
+        {
+            return Mapper.Map<List<QuestionGroupViewModel>>(TheUnitOfWork.questionGroup.GetAllQuestionGroupByCrsID(CrsID));
         }
         public List<QuestionGroupViewModel> GetQuestionGroupsByIds(int crsId, int lectID, int lessonID)
         {

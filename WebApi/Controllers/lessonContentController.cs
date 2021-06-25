@@ -27,6 +27,12 @@ namespace WebApi.Controllers
             return Ok(_lessonContentAppService.lessonContentCount(crsId));
         }
 
+        [HttpGet("LessonContentByCrsID/{crsId}")]
+        public IActionResult GetAllLessonContentByCrsID(int crsId)
+        {
+            return Ok(_lessonContentAppService.GetAllLessonContentByCrsID(crsId));
+        }
+
 
         [HttpGet]
         public IActionResult GetAllLessonContent()

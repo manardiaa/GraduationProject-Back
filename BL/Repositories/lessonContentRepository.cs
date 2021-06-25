@@ -34,8 +34,10 @@ namespace BL.Repositories
         public List<lessonContent> GetAllLessonContentByLesson(int LesId)
         {
             return GetWhere(Less => Less.LessonId == LesId).ToList();
-
-
+        }
+        public List<lessonContent> GetAllLessonContentByCrsID(int CrsId)
+        {
+            return GetWhere(Less => Less.crsID == CrsId).ToList();
         }
         
 
