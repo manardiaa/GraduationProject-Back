@@ -25,9 +25,9 @@ namespace BL.AppServices
 
             return Mapper.Map<List<QuestionOptionsViewModel>>(TheUnitOfWork.questionOptions.GetAllQuestionOptions());
         }
-        public List<QuestionOptionsViewModel> GetQuestionOptByQuestionID(int QID)
+        public QuestionOptionsViewModel GetQuestionOptByQuestionID(int QID)
         {
-            return Mapper.Map<List<QuestionOptionsViewModel>>(TheUnitOfWork.questionOptions.GetQuestionOptByQuestionID(QID));
+            return Mapper.Map<QuestionOptionsViewModel>(TheUnitOfWork.questionOptions.GetQuestionOptByQuestionID(QID));
         }
         public QuestionOptionsViewModel GetQuestionOptions(int id)
         {
