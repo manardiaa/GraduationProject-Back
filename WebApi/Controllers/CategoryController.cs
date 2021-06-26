@@ -51,11 +51,19 @@ namespace Api.Controllers
             }
             try
             {
-                _categoryAppService.SaveNewCategory(categoryViewModel);
+                if (!_categoryAppService.CheckCategoryExistsByData(categoryViewModel))
+                { 
+                 _categoryAppService.SaveNewCategory(categoryViewModel);
                 
                 //string urlDetails = Url.Link("DefaultApi", new { id = categoryViewModel.ID });
                 //return Created(urlDetails, "Added Sucess");
                 return Created("CreateCategory" , categoryViewModel);
+                }
+                else
+                {
+                    return BadRequest();
+                }
+
             }
             catch (Exception ex)
             {

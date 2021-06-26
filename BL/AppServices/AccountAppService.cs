@@ -178,6 +178,17 @@ namespace BL.AppServices
                 AssignToRole(foundedAdmin.Id, UserRoles.Admin).Wait();
         }
 
-
+         public bool CheckAccountExistsByData(RegisterViewodel accountInfo)
+        {
+            ApplicationStudentIdentity std = Mapper.Map<ApplicationStudentIdentity>(accountInfo);
+            if (std == null)
+            {
+                return false;
+            }
+            else
+            {
+                return TheUnitOfWork.account.CheckAccountExistsByData(std);
+            }
+        }
     }
 }

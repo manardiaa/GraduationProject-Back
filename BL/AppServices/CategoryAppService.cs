@@ -76,9 +76,21 @@ namespace BL.AppServices
             Category category = Mapper.Map<Category>(categoryViewModel);
             return TheUnitOfWork.category.CheckCategoryExists(category);
         }
+        public bool CheckCategoryExistsByData(CategoryViewModel categoryViewModel)
+        {
+            Category category = Mapper.Map<Category>(categoryViewModel);
+            if (category == null)
+            {
+                return false;
+            }
+            else
+            {
+                return TheUnitOfWork.category.CheckCategoryExistsByData(category);
+            }
+        }
         #endregion
 
-      
-   
+
+
     }
 }

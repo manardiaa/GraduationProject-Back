@@ -81,6 +81,18 @@ namespace BL.AppServices
             CourseVideos courseVideos = Mapper.Map<CourseVideos>(courseVideosViewModel);
             return TheUnitOfWork.courseVideos.CheckCourseVideosExists(courseVideos);
         }
+        public bool CheckCourseVideosExistsByData(CourseVideosViewModel courseVideosViewModel)
+        {
+            CourseVideos courseVideos = Mapper.Map<CourseVideos>(courseVideosViewModel);
+            if (courseVideos == null)
+            {
+                return false;
+            }
+            else
+            {
+                return TheUnitOfWork.courseVideos.CheckCourseVideosExistsByData(courseVideos);
+            }
+        }
         #endregion
 
 

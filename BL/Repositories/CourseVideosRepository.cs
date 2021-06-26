@@ -49,6 +49,13 @@ namespace BL.Repositories
         {
             return GetFirstOrDefault(l => l.Id == id);
         }
+
+        public bool CheckCourseVideosExistsByData(CourseVideos courseVideos)
+        {
+            return GetAny(crsVideo => crsVideo.Id == courseVideos.Id && crsVideo.VideoName == courseVideos.VideoName &&crsVideo.VideoURL==courseVideos.VideoURL);
+        }
+
+       
         #endregion
     }
 }

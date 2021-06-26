@@ -61,6 +61,10 @@ namespace BL.Repositories
         {
             return GetAny(l => l.id == course.id);
         }
+        public bool CheckCourseExistsByData(Course course)
+        {
+            return GetAny(crs => crs.id == course.id && crs.Name == course.Name);
+        }
         public Course GetOCourseById(int id)
         {
             return GetFirstOrDefault(l => l.id == id);

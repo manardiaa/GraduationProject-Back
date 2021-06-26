@@ -47,9 +47,16 @@ namespace WebApi.Controllers
             }
             try
             {
-                _courseVideosAppService.SaveNewCourseVideos(courseVideosViewModel);
-                return Created("CreateCourseVideos", courseVideosViewModel);
-            }
+                if (!_courseVideosAppService.CheckCourseVideosExistsByData(courseVideosViewModel))
+                {
+                    _courseVideosAppService.SaveNewCourseVideos(courseVideosViewModel);
+                    return Created("CreateCourseVideos", courseVideosViewModel);
+                }
+                else
+                {
+                    return BadRequest();
+                }
+               }
             catch (Exception ex)
             {
                 return BadRequest(ex.Message);
