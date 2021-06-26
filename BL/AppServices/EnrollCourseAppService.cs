@@ -38,6 +38,21 @@ namespace BL.AppServices
             return Mapper.Map<EnrollCourseViewModel>(TheUnitOfWork.enrollCourse.GetCrsEnroll(crsId,StId));
         }
 
+        public bool CheckIfCrsEnrollExist(EnrollCourseViewModel enrollcourseViewModel)
+        {
+            {
+                EnrollCourse crsEnroll = Mapper.Map<EnrollCourse>(enrollcourseViewModel);
+                if (crsEnroll == null)
+                {
+                    return false;
+                }
+                else
+                {
+                    return TheUnitOfWork.enrollCourse.CheckIfCrsEnrollExist(crsEnroll);
+                }
+            }
+
+        }
 
 
         public bool SaveNewEnrollCourse(EnrollCourseViewModel EnrollcourseViewModel)

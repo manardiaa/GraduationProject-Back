@@ -54,8 +54,16 @@ namespace WebApi.Controllers
             }
             try
             {
-                _enrollcourseAppService.SaveNewEnrollCourse(enrollcourseViewModel);
-                return Created("CreateEnrollCourse", enrollcourseViewModel);
+                if(!_enrollcourseAppService.CheckIfCrsEnrollExist(enrollcourseViewModel))
+                {
+                    _enrollcourseAppService.SaveNewEnrollCourse(enrollcourseViewModel);
+                    return Created("CreateEnrollCourse", enrollcourseViewModel);
+                }
+                else
+                {
+                    return BadRequest();
+                }
+                
             }
             catch (Exception ex)
             {

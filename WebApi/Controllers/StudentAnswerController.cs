@@ -47,6 +47,7 @@ namespace WebApi.Controllers
             }
             try
             {
+                if(!studentAnswerAppService.CheckIfAnswerExist(studentAnswerViewModel))
                 studentAnswerAppService.SaveNewStudentAnswer(studentAnswerViewModel);
                 return Created("Student Answer Added", studentAnswerViewModel);
             }

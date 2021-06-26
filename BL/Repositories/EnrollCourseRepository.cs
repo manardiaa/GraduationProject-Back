@@ -33,6 +33,11 @@ namespace BL.Repositories
         {
             return Insert(enrollcourse);
         }
+
+        public bool CheckIfCrsEnrollExist(EnrollCourse enrollcourse)
+        {
+            return GetAny(l => l.StudentId == enrollcourse.StudentId && l.CourseId == enrollcourse.CourseId);
+        }
         public void UpdateEnrollCourse(EnrollCourse enrollcourse)
         {
             Update(enrollcourse);

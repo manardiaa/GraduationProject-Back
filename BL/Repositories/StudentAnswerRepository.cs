@@ -28,7 +28,10 @@ namespace BL.Repositories
         {
             return GetAll().ToList();
         }
-
+        public bool CheckIfAnswerExist(StudentAnswer stdAnswr)
+        {
+            return GetAny(l => l.StudentId == stdAnswr.StudentId && l.lessonContentId == stdAnswr.lessonContentId && l.QuestionId == stdAnswr.QuestionId);
+        }
         public bool InsertStudentAnswer(StudentAnswer studentAnswer)
         {
             var qu = (Question)GetWhere(q => q.QuestionId== studentAnswer.QuestionId);

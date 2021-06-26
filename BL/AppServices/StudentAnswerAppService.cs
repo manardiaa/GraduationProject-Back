@@ -34,6 +34,21 @@ namespace BL.AppServices
         {
             return Mapper.Map<StudentAnswerViewModel>(TheUnitOfWork.studentAnswer.GetById(id));
         }
+        public bool CheckIfAnswerExist(StudentAnswerViewModel studentAnswerViewModel)
+        {
+            {
+                StudentAnswer studentAnswer = Mapper.Map<StudentAnswer>(studentAnswerViewModel);
+                if (studentAnswer == null)
+                {
+                    return false;
+                }
+                else
+                {
+                    return TheUnitOfWork.studentAnswer.CheckIfAnswerExist(studentAnswer);
+                }
+            }
+
+        }
         public bool SaveNewStudentAnswer(StudentAnswerViewModel studentAnswerViewModel)
         {
             if (studentAnswerViewModel == null)
