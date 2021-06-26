@@ -31,6 +31,10 @@ namespace BL.AppServices
         public int lessonContentCount(int crsId)
         {
             return TheUnitOfWork.lessonContent.lessonContentCount(crsId);
+        }   
+        public int GetFirstLessonContentByLessonId(int lessonId)
+        {
+            return TheUnitOfWork.lessonContent.GetFirstLessonContentByLessonId(lessonId);
         }        
 
         public lessonContentViewModel GetlessonContent(int id)

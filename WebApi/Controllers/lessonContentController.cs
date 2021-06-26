@@ -39,6 +39,14 @@ namespace WebApi.Controllers
         {
             return Ok(_lessonContentAppService.AllLessonContent());
         }
+
+        [HttpGet("FirstLessonContent/{lessonId}")]
+        public IActionResult  GetFirstLessonContentByLessonId(int lessonId)
+        {
+            return Ok(_lessonContentAppService.GetFirstLessonContentByLessonId(lessonId));
+        }
+
+
         [HttpGet("{id}")]
         public IActionResult GetLessonContentById(int id)
         {

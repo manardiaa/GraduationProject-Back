@@ -63,6 +63,12 @@ namespace BL.Repositories
             return GetFirstOrDefault(l => l.Id == id);
         }
 
+        public int GetFirstLessonContentByLessonId(int id)
+        {
+            lessonContent lessonContendId = GetFirstOrDefault(l => l.LessonId == id);
+            return lessonContendId.Id;
+        }
+
         public int lessonContentCount(int crsId)
         {
             return GetWhere(l => l.crsID == crsId).ToList().Count();
