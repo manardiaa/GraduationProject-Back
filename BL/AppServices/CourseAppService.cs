@@ -92,6 +92,19 @@ namespace BL.AppServices
         {
             return Mapper.Map<List<CourseViewModel>>(TheUnitOfWork.course.GetTopTwoCrs(CatID));
         }
+
+        public bool CheckCourseExistsByData(CourseViewModel courseViewModel)
+        {
+            Course course = Mapper.Map<Course>(courseViewModel);
+            if (course == null)
+            {
+                return false;
+            }
+            else
+            {
+                return TheUnitOfWork.course.CheckCourseExistsByData(course);
+            }
+        }
         #endregion
 
 

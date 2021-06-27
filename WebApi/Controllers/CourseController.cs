@@ -69,8 +69,16 @@ namespace WebApi.Controllers
             }
             try
             {
-                _courseAppService.SaveNewCourse(courseViewModel);
-                return Created("CreateCourse", courseViewModel);
+                if (!_courseAppService.CheckCourseExistsByData(courseViewModel))
+                {
+                    _courseAppService.SaveNewCourse(courseViewModel);
+                    return Created("CreateCourse", courseViewModel);
+                }
+                else
+                {
+                    return BadRequest();
+                }
+                
             }
             catch (Exception ex)
             {

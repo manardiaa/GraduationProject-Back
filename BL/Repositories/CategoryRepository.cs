@@ -47,6 +47,10 @@ namespace BL.Repositories
         {
             return GetAny(l => l.Id == category.Id);
         }
+        public bool CheckCategoryExistsByData(Category category)
+        {
+            return GetAny(cat => cat.Id == category.Id && cat.CatName == category.CatName);
+        }
         public Category GetOCategoryById(int id)
         {
             return GetFirstOrDefault(l => l.Id == id);

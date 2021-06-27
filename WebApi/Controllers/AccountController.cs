@@ -69,7 +69,8 @@ namespace Api.Controllers
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
-
+            if (!_accountAppService.CheckAccountExistsByData(model))
+            {
             var result = await _accountAppService.Register(model);
 
             if (!result.Succeeded)
@@ -77,11 +78,13 @@ namespace Api.Controllers
                     new Response { Status = "Error", Message = result.Errors.FirstOrDefault().Description });
 
             ApplicationStudentIdentity identityUser = await _accountAppService.Find(model.UserName, model.PasswordHash);
-            //create roles
-            //await _roleAppService.CreateRoles();
             await _accountAppService.AssignToRole(identityUser.Id, roleName);
             return Ok(new Response { Status = "Success", Message = "User created successfully!" });
-
+            }
+            else
+            {
+                return BadRequest();
+            }
         }
         [HttpPut("{id}")]
         public async Task<IActionResult> Edit(string id,RegisterViewodel registerViewodel)
@@ -140,15 +143,5 @@ namespace Api.Controllers
 
 
 
-        //[HttpGet("count")]
-        //public IActionResult UsersCount()
-        //{
-        //    return Ok(_accountAppService.CountEntity());
-        //}
-        //[HttpGet("{pageSize}/{pageNumber}")]
-        //public IActionResult GetUsersByPage(int pageSize, int pageNumber)
-        //{
-        //    return Ok(_accountAppService.GetPageRecords(pageSize, pageNumber));
-        //}
     }
 }

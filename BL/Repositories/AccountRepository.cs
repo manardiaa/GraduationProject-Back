@@ -128,5 +128,10 @@ namespace BL.Repositories
             IdentityResult result = await manager.UpdateAsync(user);
             return true;
         }
+
+        public bool CheckAccountExistsByData(ApplicationStudentIdentity user)
+        {
+            return GetAny(std=> std.UserName == user.UserName && std.Email == user.Email);
+        }
     }
 }
