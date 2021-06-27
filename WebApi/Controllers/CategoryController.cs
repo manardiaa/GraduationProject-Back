@@ -29,6 +29,12 @@ namespace Api.Controllers
         {
             return Ok(_categoryAppService.GetAllCateogries());
         }
+        [Route("/school-of/{name}")]
+        [HttpGet]
+        public IActionResult GetCategoryByName(string name)
+        {
+            return Ok(_categoryAppService.GetIdCategoryByName(name));
+        }
         [HttpGet("{id}")]
         public IActionResult GetCategoryById(int id)
         {

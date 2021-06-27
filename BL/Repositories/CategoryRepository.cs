@@ -24,6 +24,11 @@ namespace BL.Repositories
         {
             return GetAll().ToList();
         }
+        public Category GetIDOfCategoryByName(string name)
+        {
+
+          return GetFirstOrDefault(cat => cat.CatName == name);
+        }
 
         public bool InsertCategory(Category category)
         {

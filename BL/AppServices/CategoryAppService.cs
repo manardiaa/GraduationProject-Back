@@ -30,6 +30,11 @@ namespace BL.AppServices
         {
             return Mapper.Map<CategoryViewModel>(TheUnitOfWork.category.GetById(id));
         }
+
+        public CategoryViewModel GetIdCategoryByName(string Name)
+        {
+            return Mapper.Map<CategoryViewModel>(TheUnitOfWork.category.GetIDOfCategoryByName(Name));
+        }
         public bool SaveNewCategory(CategoryViewModel categoryViewModel)
         {
             if (categoryViewModel == null)
