@@ -52,7 +52,7 @@ namespace BL.Repositories
 
         public bool CheckCourseVideosExistsByData(CourseVideos courseVideos)
         {
-            return GetAny(crsVideo => crsVideo.Id == courseVideos.Id && crsVideo.VideoName == courseVideos.VideoName &&crsVideo.VideoURL==courseVideos.VideoURL);
+            return GetAny(crsVideo =>crsVideo.VideoName == courseVideos.VideoName &&crsVideo.VideoURL==courseVideos.VideoURL);
         }
 
        
